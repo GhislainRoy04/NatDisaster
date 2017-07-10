@@ -11,7 +11,7 @@ class SettingsScreen extends Component{
             <View style={styles.container}>
                 <Text style={styles.title}>Settings</Text>
                 <View>
-                    <Button title="Push Notification Settings" onPress={()=>this.props.navigation.navigate('pushnotification')} />
+                    <Button title="Push Notification Settings." onPress={()=>this.props.navigation.navigate('pushnotification')} />
                 </View>
             </View>
         )
