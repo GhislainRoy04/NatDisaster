@@ -1,5 +1,12 @@
 {
   "expo": {
-    "sdkVersion": "18.0.0"
+    "sdkVersion": "18.0.0",
+    "name":"NatDisaster",
+    "icon":"./NatDisaster.png",
+    "version":"1.0.0",
+    "slug":"nat-disaster",
+    "android":{
+      "package":"com.ghislainroy.natdisaster"
+    }
   }
 }
