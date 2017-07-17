@@ -1,7 +1,8 @@
 'use strict';
 import React,{Component} from "react";
-import {View,Text} from "react-native";
+import {ScrollView,Text} from "react-native";
 import {Button} from "react-native-elements";
+import style from "./MainStyleSheet";
 
 class MainScreen extends Component{
     static navigationOptions = ({navigation})=> ({
@@ -11,23 +12,23 @@ class MainScreen extends Component{
     });
     render(){
         return(
-            <View>
-                <Button onPress={()=>{}} title="Cold Wave" />
-                <Button onPress={()=>{}} title="Drought" />
-                <Button onPress={()=>{}} title="EarthQuake" />
-                <Button onPress={()=>{}} title="Epidemic" />
-                <Button onPress={()=>{}} title="Cyclone" />
-                <Button onPress={()=>{}} title="Fire / Wild Fire" />
-                <Button onPress={()=>{}} title="Flash Flood" />
-                <Button onPress={()=>{}} title="Flood" />
-                <Button onPress={()=>{}} title="Heat Wave" />
-                <Button onPress={()=>{}} title="Land / Mud Slide" />
-                <Button onPress={()=>{}} title="Severe Local Storm" />
-                <Button onPress={()=>{}} title="Avalanche" />
-                <Button onPress={()=>{}} title="Storm Surge" />
-                <Button onPress={()=>{}} title="Tsunami" />
-                <Button onPress={()=>{}} title="Volcano"/>
-            </View>
+            <ScrollView>
+                <Button onPress={()=>{}} buttonStyle={style.button} title="Cold Wave" />
+                <Button onPress={()=>{}} buttonStyle={style.button} title="Drought" />
+                <Button onPress={()=>{}} buttonStyle={style.button} title="EarthQuake" />
+                <Button onPress={()=>{}} buttonStyle={style.button} title="Epidemic" />
+                <Button onPress={()=>{}} buttonStyle={style.button} title="Cyclone" />
+                <Button onPress={()=>{}} buttonStyle={style.button} title="Fire / Wild Fire" />
+                <Button onPress={()=>{}} buttonStyle={style.button} title="Flash Flood" />
+                <Button onPress={()=>{}} buttonStyle={style.button} title="Flood" />
+                <Button onPress={()=>{}} buttonStyle={style.button} title="Heat Wave" />
+                <Button onPress={()=>{}} buttonStyle={style.button} title="Land / Mud Slide" />
+                <Button onPress={()=>{}} buttonStyle={style.button} title="Severe Local Storm" />
+                <Button onPress={()=>{}} buttonStyle={style.button} title="Avalanche" />
+                <Button onPress={()=>{}} buttonStyle={style.button} title="Storm Surge" />
+                <Button onPress={()=>{}} buttonStyle={style.button} title="Tsunami" />
+                <Button onPress={()=>{}} buttonStyle={style.button} title="Volcano"/>
+            </ScrollView>
         )
     }
 }
