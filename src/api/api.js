@@ -9,14 +9,10 @@ export  default ({
         let encodedType = encodeURIComponent(type);
         let requestUrl = `${disasterURL}&query[value]=${encodedType}`;
 
-        axios.get(requestUrl).then(function(response){
-            if(response.data.length>0){
-                return response.data;
-            }else{
-                Alert.alert("Error",`Error occurred during the get. ${response.error.message}`);
-            }
-        },function(response){
-            Alert.alert("Error",`Error occurred during the get. ${response.error.message}`);
+        return axios.get(requestUrl).then(function (response) {
+            return response;
+        }).catch(function (error) {
+            Alert.alert("Error", `Error occurred during the get. ${error.data.error.message}`);
         });
     }
 });
