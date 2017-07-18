@@ -21,9 +21,9 @@ class MainScreen extends Component {
         return (
             <View>
                 <ScrollView>
-                    <Button onPress={(event) => this.onPressButton(event)} value="Cold Wave" buttonStyle={styles.button} title="Cold Wave"/>
+                    <Button onPress={(event) => this.onPressButton(event)} buttonStyle={styles.button} title="Cold Wave"/>
                     <Button onPress={(event) => this.onPressButton(event)} buttonStyle={styles.button} title="Drought"/>
-                    <Button onPress={(event) => this.onPressButton(event)} buttonStyle={styles.button} title="EarthQuake"/>
+                    <Button onPress={() => {this.props.navigation.navigate('earthquake')}} buttonStyle={styles.button} title="EarthQuake"/>
                     <Button onPress={(event) => this.onPressButton(event)} buttonStyle={styles.button} title="Epidemic"/>
                     <Button onPress={(event) => this.onPressButton(event)} buttonStyle={styles.button} title="Cyclone"/>
                     <Button onPress={(event) => this.onPressButton(event)} buttonStyle={styles.button} title="Fire / Wild Fire"/>
