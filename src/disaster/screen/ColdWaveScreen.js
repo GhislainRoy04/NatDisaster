@@ -1,6 +1,6 @@
 'use strict';
 import React,{Component} from "react";
-import {Text,View,Linking} from "react-native";
+import {Text,View,Linking,ScrollView} from "react-native";
 import {Button,ButtonGroup} from "react-native-elements";
 import {Api} from "../../api";
 
@@ -32,7 +32,7 @@ class ColdWaveScreen extends Component{
                     containerStyle={{height: 50}}
                 />
 
-                <View style={{marginTop:10,height:150,alignItems:'center',flexDirection:'column',justifyContent:'space-between'}}>
+                <ScrollView contentContainerStyle={{marginTop:10,alignItems:'center',flexDirection:'column',justifyContent:'space-between'}}>
                     {this.state.reports.map((report,index)=>
 
                     <View  key={index}>
@@ -43,7 +43,7 @@ class ColdWaveScreen extends Component{
                     </View>
 
                     )}
-                </View>
+                </ScrollView>
             </View>
         )
     }
