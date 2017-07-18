@@ -1,14 +1,14 @@
 'use strict';
 import React, {Component} from "react";
 import {TabNavigator, StackNavigator} from "react-navigation";
-import {EarthQuakeScreen} from "../../earthquake";
+import {MainScreen} from "../../main";
 import {SettingsScreen,PushNotificationScreen} from "../../settings";
 
 class Navigation extends Component {
     render() {
         const MainNavigation = StackNavigator({
-                earthquake: {
-                    screen: EarthQuakeScreen,
+                 MainScreen: {
+                    screen: MainScreen,
                     headerMode:"float",
                     navigationOptions:{
                         headerStyle:{
