@@ -36,11 +36,22 @@ class ColdWaveScreen extends Component{
                     {this.state.reports.map((report,index)=>
 
                     <View  key={index}>
-                        <Text>{report.fields.name}</Text>
+                        <Text>{report.fields.title}</Text>
                         <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={() => {
                             Linking.openURL(report.href).catch('Error occurred trying to open link.');
                         }}/>
                     </View>
+
+                    )}
+
+                    {this.state.summary.map((report,index)=>
+
+                        <View  key={index}>
+                            <Text>{report.fields.name}</Text>
+                            <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={() => {
+                                Linking.openURL(report.href).catch('Error occurred trying to open link.');
+                            }}/>
+                        </View>
 
                     )}
                 </ScrollView>
@@ -55,7 +66,9 @@ class ColdWaveScreen extends Component{
     }
 
     onSummaryPress(){
-
+        Api.getDisasterByType('coldWave').then((res) => {
+            this.setState({summary:res.data.data});
+        });
     }
 
     moreInfo(uri){

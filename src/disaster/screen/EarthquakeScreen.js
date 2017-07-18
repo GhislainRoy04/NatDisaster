@@ -34,6 +34,17 @@ class EarthquakeScreen extends Component{
                     {this.state.reports.map((report,index)=>
 
                         <View  key={index}>
+                            <Text>{report.fields.title}</Text>
+                            <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={() => {
+                                Linking.openURL(report.href).catch('Error occurred trying to open link.');
+                            }}/>
+                        </View>
+
+                    )}
+
+                    {this.state.summary.map((report,index)=>
+
+                        <View  key={index}>
                             <Text>{report.fields.name}</Text>
                             <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={() => {
                                 Linking.openURL(report.href).catch('Error occurred trying to open link.');
@@ -53,7 +64,9 @@ class EarthquakeScreen extends Component{
     }
 
     onSummaryPress(){
-
+        Api.getDisasterByType('earthquake').then((res) => {
+            this.setState({summary:res.data.data});
+        });
     }
 
     moreInfo(uri){

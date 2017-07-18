@@ -34,6 +34,16 @@ class FireWildFireScreen extends Component{
                     {this.state.reports.map((report,index)=>
 
                         <View  key={index}>
+                            <Text>{report.fields.title}</Text>
+                            <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={() => {
+                                Linking.openURL(report.href).catch('Error occurred trying to open link.');
+                            }}/>
+                        </View>
+
+                    )}
+                    {this.state.summary.map((report,index)=>
+
+                        <View  key={index}>
                             <Text>{report.fields.name}</Text>
                             <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={() => {
                                 Linking.openURL(report.href).catch('Error occurred trying to open link.');
@@ -41,6 +51,7 @@ class FireWildFireScreen extends Component{
                         </View>
 
                     )}
+
                 </ScrollView>
             </View>
         )
@@ -53,7 +64,9 @@ class FireWildFireScreen extends Component{
     }
 
     onSummaryPress(){
-
+        Api.getDisasterByType('wildFire').then((res) => {
+            this.setState({summary:res.data.data});
+        });
     }
 
     moreInfo(uri){
