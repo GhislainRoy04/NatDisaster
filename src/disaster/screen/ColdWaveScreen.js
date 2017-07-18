@@ -32,16 +32,18 @@ class ColdWaveScreen extends Component{
                     containerStyle={{height: 50}}
                 />
 
-                {this.state.reports.map((report,index)=>
+                <View style={{marginTop:10,height:150,alignItems:'center',flexDirection:'column',justifyContent:'space-between'}}>
+                    {this.state.reports.map((report,index)=>
 
-                <View key={index}>
-                    <Text>{report.fields.title}</Text>
-                    <Button small title="More info" onPress={() => {
-                        Linking.openURL(report.href).catch('Error occurred trying to open link.');
-                    }}/>
+                    <View  key={index}>
+                        <Text>{report.fields.title}</Text>
+                        <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={() => {
+                            Linking.openURL(report.href).catch('Error occurred trying to open link.');
+                        }}/>
+                    </View>
+
+                    )}
                 </View>
-
-                )}
             </View>
         )
     }
