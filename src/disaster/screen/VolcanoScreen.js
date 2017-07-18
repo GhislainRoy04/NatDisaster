@@ -41,19 +41,31 @@ class VolcanoScreen extends Component{
                         </View>
 
                     )}
+                    {this.state.summary.map((report,index)=>
+
+                        <View  key={index}>
+                            <Text>{report.fields.name}</Text>
+                            <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={() => {
+                                Linking.openURL(report.href).catch('Error occurred trying to open link.');
+                            }}/>
+                        </View>
+
+                    )}
                 </ScrollView>
             </View>
         )
     }
 
     onReportPress(){
-        Api.getDisasterByType('volcano').then((res) => {
+        Api.getReportsByType('volcano').then((res) => {
             this.setState({reports:res.data.data});
         });
     }
 
     onSummaryPress(){
-
+        Api.getDisasterByType('volcano').then((res) => {
+            this.setState({summary:res.data.data});
+        });
     }
 
     moreInfo(uri){
