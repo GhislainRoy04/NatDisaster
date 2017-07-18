@@ -34,7 +34,7 @@ class TsunamiScreen extends Component{
                     {this.state.reports.map((report,index)=>
 
                         <View  key={index}>
-                            <Text>{report.fields.title}</Text>
+                            <Text>{report.fields.name}</Text>
                             <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={() => {
                                 Linking.openURL(report.href).catch('Error occurred trying to open link.');
                             }}/>
@@ -47,7 +47,7 @@ class TsunamiScreen extends Component{
     }
 
     onReportPress(){
-        Api.getDisasterByType('tsunami').then((res) => {
+        Api.getReportsByType('tsunami').then((res) => {
             this.setState({reports:res.data.data});
         });
     }

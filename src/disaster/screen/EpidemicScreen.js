@@ -34,7 +34,7 @@ class EpidemicScreen extends Component{
                     {this.state.reports.map((report,index)=>
 
                         <View  key={index}>
-                            <Text>{report.fields.title}</Text>
+                            <Text>{report.fields.name}</Text>
                             <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={() => {
                                 Linking.openURL(report.href).catch('Error occurred trying to open link.');
                             }}/>
@@ -47,7 +47,7 @@ class EpidemicScreen extends Component{
     }
 
     onReportPress(){
-        Api.getDisasterByType('epidemic').then((res) => {
+        Api.getReportsByType('epidemic').then((res) => {
             this.setState({reports:res.data.data});
         });
     }

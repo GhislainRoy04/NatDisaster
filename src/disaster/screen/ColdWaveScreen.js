@@ -36,7 +36,7 @@ class ColdWaveScreen extends Component{
                     {this.state.reports.map((report,index)=>
 
                     <View  key={index}>
-                        <Text>{report.fields.title}</Text>
+                        <Text>{report.fields.name}</Text>
                         <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={() => {
                             Linking.openURL(report.href).catch('Error occurred trying to open link.');
                         }}/>
@@ -49,7 +49,7 @@ class ColdWaveScreen extends Component{
     }
 
     onReportPress(){
-        Api.getDisasterByType('coldWave').then((res) => {
+        Api.getReportsByType('coldWave').then((res) => {
             this.setState({reports:res.data.data});
         });
     }
