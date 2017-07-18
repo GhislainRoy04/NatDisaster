@@ -1,7 +1,7 @@
 'use strict';
 import React,{Component} from "react";
 import {Text,View,Linking} from "react-native";
-import {Button} from "react-native-elements";
+import {Button,ButtonGroup} from "react-native-elements";
 import {Api} from "../../api";
 
 class ColdWaveScreen extends Component{
@@ -11,22 +11,32 @@ class ColdWaveScreen extends Component{
 
     constructor(props){
         super(props);
-        this.state=({pastEvent:[],currentEvent:[],alert:[],reports:[]});
+        this.state=({summary:[],reports:[],selectedIndex:-1});
+
         this.onReportPress=this.onReportPress.bind(this);
         this.moreInfo = this.onReportPress.bind(this);
+        this.updateIndex = this.updateIndex.bind(this);
+
+
     }
 
     render(){
+        let {selectedIndex} = this.state;
+        const buttons = ['Reports','Summary'];
         return(
             <View>
-                <Text>Cold wave</Text>
-                <Button title="Reports" onPress={()=>{this.onReportPress()}} />
+                <ButtonGroup
+                    onPress={this.updateIndex}
+                    selectedIndex={selectedIndex}
+                    buttons={buttons}
+                    containerStyle={{height: 50}}
+                />
 
                 {this.state.reports.map((report,index)=>
 
                 <View key={index}>
                     <Text>{report.fields.title}</Text>
-                    <Button title="More info" onPress={() => {
+                    <Button small title="More info" onPress={() => {
                         Linking.openURL(report.href).catch('Error occurred trying to open link.');
                     }}/>
                 </View>
@@ -42,8 +52,26 @@ class ColdWaveScreen extends Component{
         });
     }
 
+    onSummaryPress(){
+
+    }
+
     moreInfo(uri){
         this.setState({selectedUri:uri});
+    }
+
+    updateIndex (selectedIndex) {
+        this.setState({selectedIndex});
+
+        if(selectedIndex===0){
+            this.setState({summary:[]});
+            this.onReportPress();
+        }
+
+        if(selectedIndex===1){
+            this.setState({reports:[]});
+            this.onSummaryPress();
+        }
     }
 }
 
