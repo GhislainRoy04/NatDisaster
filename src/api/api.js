@@ -2,7 +2,7 @@
 import axios from "axios";
 import {Alert} from "react-native";
 
-const reportURL = "https://api.reliefweb.int/v1/reports?appname=natdisaster";
+const reportURL = "https://api.reliefweb.int/v1/reports?appname=natdisaster&limit=20&preset=latest";
 const disasterURL = "https://api.reliefweb.int/v1/disasters?appname=natdisaster";
 
 export  default ({
