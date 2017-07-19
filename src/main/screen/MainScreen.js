@@ -26,9 +26,9 @@ class MainScreen extends Component {
             {title: "Flood", path: "flood"},
             {title: "Heat Wave", path: "heatWave"},
             {title: "Land / Mud Slide", path: "landMud"},
-            {title: "Severe Local Storm", path: "localStorm"},
+            //{title: "Severe Local Storm", path: "localStorm"},
             {title: "Avalanche", path: "avalanche"},
-            {title: "Storm Surge", path: "stormSurge"},
+            //{title: "Storm Surge", path: "stormSurge"},
             {title: "Tsunami", path: "tsunami"},
             {title: "Volcano", path: "volcano"},
         ];

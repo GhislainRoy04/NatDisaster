@@ -3,6 +3,7 @@ import React,{Component} from "react";
 import {View,Text,ScrollView} from "react-native";
 import {Button,ButtonGroup} from "react-native-elements";
 import {Api} from "../../api";
+import styles from "./DisasterCommonStyleSheet";
 
 class FlashFloodScreen extends Component{
     static navigationOptions = ({navigation}) =>({
@@ -14,7 +15,7 @@ class FlashFloodScreen extends Component{
         this.state=({summary:[],reports:[],moreInfo:[],selectedIndex:-1});
 
         this.onReportPress=this.onReportPress.bind(this);
-        this.moreInfo = this.onReportPress.bind(this);
+        this.onMoreInfo = this.onMoreInfo.bind(this);
         this.updateIndex = this.updateIndex.bind(this);
     }
 
@@ -30,11 +31,11 @@ class FlashFloodScreen extends Component{
                     containerStyle={{height: 50}}
                 />
 
-                <ScrollView contentContainerStyle={{marginTop:10,alignItems:'center',flexDirection:'column',justifyContent:'space-between'}}>
+                <ScrollView contentContainerStyle={{marginTop:10,flexDirection:'column',justifyContent:'space-between'}}>
                     {reports.map((report,index)=>
 
-                        <View  key={index}>
-                            <Text>{report.fields.title}</Text>
+                        <View style={styles.reportContainer} key={index}>
+                            <Text style={styles.reportTitle}>{report.fields.title}</Text>
                             <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={()=>this.onMoreInfo(report.href)}/>
                         </View>
 
@@ -42,8 +43,8 @@ class FlashFloodScreen extends Component{
 
                     {summary.map((report,index)=>
 
-                        <View  key={index}>
-                            <Text>{report.fields.name}</Text>
+                        <View style={styles.reportContainer} key={index}>
+                            <Text style={styles.reportTitle}>{report.fields.name}</Text>
                             <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={()=>this.onMoreInfo(report.href)}/>
                         </View>
 
