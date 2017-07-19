@@ -11,17 +11,15 @@ class ColdWaveScreen extends Component{
 
     constructor(props){
         super(props);
-        this.state=({summary:[],reports:[],selectedIndex:-1});
+        this.state=({summary:[],reports:[],moreInfo:[],selectedIndex:-1});
 
         this.onReportPress=this.onReportPress.bind(this);
         this.onMoreInfo = this.onMoreInfo.bind(this);
         this.updateIndex = this.updateIndex.bind(this);
-
-
     }
 
     render(){
-        let {selectedIndex} = this.state;
+        let {selectedIndex,summary,reports,moreInfo} = this.state;
         const buttons = ['Reports','Summary'];
         return(
             <View>
@@ -33,7 +31,7 @@ class ColdWaveScreen extends Component{
                 />
 
                 <ScrollView contentContainerStyle={{marginTop:10,alignItems:'center',flexDirection:'column',justifyContent:'space-between'}}>
-                    {this.state.reports.map((report,index)=>
+                    {reports.map((report,index)=>
 
                     <View  key={index}>
                         <Text>{report.fields.title}</Text>
@@ -42,7 +40,7 @@ class ColdWaveScreen extends Component{
 
                     )}
 
-                    {this.state.summary.map((report,index)=>
+                    {summary.map((report,index)=>
 
                         <View  key={index}>
                             <Text>{report.fields.name}</Text>
@@ -51,11 +49,11 @@ class ColdWaveScreen extends Component{
 
                     )}
 
-                    {this.state.moreInfo&&
+                    {moreInfo &&
                         <View>
-                            <Text>{this.state.moreInfo.fields.title}</Text>
-                            <Text>{this.state.moreInfo.fields.primary_country.name}</Text>
-                            <Text>{this.state.moreInfo.fields.body}</Text>
+                            <Text>{moreInfo.fields && moreInfo.fields.title}</Text>
+                            <Text>{moreInfo.fields && moreInfo.fields.primary_country.name}</Text>
+                            <Text>{moreInfo.fields && moreInfo.fields.body}</Text>
                         </View>
                     }
                 </ScrollView>
@@ -77,7 +75,6 @@ class ColdWaveScreen extends Component{
 
     onMoreInfo(uri){
         Api.getMoreInfo(uri).then((res)=>{
-            console.log(res.data.data[0]);
             this.setState({moreInfo:res.data.data[0]});
         })
     }
@@ -86,12 +83,12 @@ class ColdWaveScreen extends Component{
         this.setState({selectedIndex});
 
         if(selectedIndex===0){
-            this.setState({summary:[]});
+            this.setState({summary:[],moreInfo:[]});
             this.onReportPress();
         }
 
         if(selectedIndex===1){
-            this.setState({reports:[]});
+            this.setState({reports:[],moreInfo:[]});
             this.onSummaryPress();
         }
     }
