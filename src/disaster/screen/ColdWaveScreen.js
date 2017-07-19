@@ -1,6 +1,6 @@
 'use strict';
 import React,{Component} from "react";
-import {Text,View,Linking,ScrollView} from "react-native";
+import {Text,View,ScrollView} from "react-native";
 import {Button,ButtonGroup} from "react-native-elements";
 import {Api} from "../../api";
 
@@ -11,17 +11,15 @@ class ColdWaveScreen extends Component{
 
     constructor(props){
         super(props);
-        this.state=({summary:[],reports:[],selectedIndex:-1});
+        this.state=({summary:[],reports:[],moreInfo:[],selectedIndex:-1});
 
         this.onReportPress=this.onReportPress.bind(this);
-        this.moreInfo = this.onReportPress.bind(this);
+        this.onMoreInfo = this.onMoreInfo.bind(this);
         this.updateIndex = this.updateIndex.bind(this);
-
-
     }
 
     render(){
-        let {selectedIndex} = this.state;
+        let {selectedIndex,summary,reports,moreInfo} = this.state;
         const buttons = ['Reports','Summary'];
         return(
             <View>
@@ -33,27 +31,31 @@ class ColdWaveScreen extends Component{
                 />
 
                 <ScrollView contentContainerStyle={{marginTop:10,alignItems:'center',flexDirection:'column',justifyContent:'space-between'}}>
-                    {this.state.reports.map((report,index)=>
+                    {reports.map((report,index)=>
 
                     <View  key={index}>
                         <Text>{report.fields.title}</Text>
-                        <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={() => {
-                            Linking.openURL(report.href).catch('Error occurred trying to open link.');
-                        }}/>
+                        <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={() => this.onMoreInfo(report.href)}/>
                     </View>
 
                     )}
 
-                    {this.state.summary.map((report,index)=>
+                    {summary.map((report,index)=>
 
                         <View  key={index}>
                             <Text>{report.fields.name}</Text>
-                            <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={() => {
-                                Linking.openURL(report.href).catch('Error occurred trying to open link.');
-                            }}/>
+                            <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={()=>this.onMoreInfo(report.href)}/>
                         </View>
 
                     )}
+
+                    {moreInfo &&
+                        <View>
+                            <Text>{moreInfo.fields && moreInfo.fields.title}</Text>
+                            <Text>{moreInfo.fields && moreInfo.fields.primary_country.name}</Text>
+                            <Text>{moreInfo.fields && moreInfo.fields.body}</Text>
+                        </View>
+                    }
                 </ScrollView>
             </View>
         )
@@ -71,20 +73,22 @@ class ColdWaveScreen extends Component{
         });
     }
 
-    moreInfo(uri){
-        this.setState({selectedUri:uri});
+    onMoreInfo(uri){
+        Api.getMoreInfo(uri).then((res)=>{
+            this.setState({moreInfo:res.data.data[0]});
+        })
     }
 
     updateIndex (selectedIndex) {
         this.setState({selectedIndex});
 
         if(selectedIndex===0){
-            this.setState({summary:[]});
+            this.setState({summary:[],moreInfo:[]});
             this.onReportPress();
         }
 
         if(selectedIndex===1){
-            this.setState({reports:[]});
+            this.setState({reports:[],moreInfo:[]});
             this.onSummaryPress();
         }
     }
