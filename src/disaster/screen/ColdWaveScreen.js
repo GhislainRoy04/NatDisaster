@@ -1,6 +1,6 @@
 'use strict';
 import React,{Component} from "react";
-import {Text,View,Linking,ScrollView} from "react-native";
+import {Text,View,ScrollView} from "react-native";
 import {Button,ButtonGroup} from "react-native-elements";
 import {Api} from "../../api";
 
@@ -14,7 +14,7 @@ class ColdWaveScreen extends Component{
         this.state=({summary:[],reports:[],selectedIndex:-1});
 
         this.onReportPress=this.onReportPress.bind(this);
-        this.moreInfo = this.onReportPress.bind(this);
+        this.onMoreInfo = this.onMoreInfo.bind(this);
         this.updateIndex = this.updateIndex.bind(this);
 
 
@@ -37,9 +37,7 @@ class ColdWaveScreen extends Component{
 
                     <View  key={index}>
                         <Text>{report.fields.title}</Text>
-                        <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={() => {
-                            Linking.openURL(report.href).catch('Error occurred trying to open link.');
-                        }}/>
+                        <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={() => this.onMoreInfo(report.href)}/>
                     </View>
 
                     )}
@@ -48,12 +46,18 @@ class ColdWaveScreen extends Component{
 
                         <View  key={index}>
                             <Text>{report.fields.name}</Text>
-                            <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={() => {
-                                Linking.openURL(report.href).catch('Error occurred trying to open link.');
-                            }}/>
+                            <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={()=>this.onMoreInfo(report.href)}/>
                         </View>
 
                     )}
+
+                    {this.state.moreInfo&&
+                        <View>
+                            <Text>{this.state.moreInfo.fields.title}</Text>
+                            <Text>{this.state.moreInfo.fields.primary_country.name}</Text>
+                            <Text>{this.state.moreInfo.fields.body}</Text>
+                        </View>
+                    }
                 </ScrollView>
             </View>
         )
@@ -71,8 +75,11 @@ class ColdWaveScreen extends Component{
         });
     }
 
-    moreInfo(uri){
-        this.setState({selectedUri:uri});
+    onMoreInfo(uri){
+        Api.getMoreInfo(uri).then((res)=>{
+            console.log(res.data.data[0]);
+            this.setState({moreInfo:res.data.data[0]});
+        })
     }
 
     updateIndex (selectedIndex) {

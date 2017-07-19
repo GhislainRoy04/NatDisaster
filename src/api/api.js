@@ -27,8 +27,7 @@ export  default ({
         });
     },
     getMoreInfo:function(href){
-        let encodedHref=encodeURIComponent(href);
-        return axios.get(encodedHref).then(function(response){
+        return axios.get(href).then(function(response){
             return response;
         }).catch(function(error){
             Alert.alert("Error",`Error occurred during the get. ${error.data.error.message}`);
