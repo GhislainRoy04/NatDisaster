@@ -36,7 +36,7 @@ class CycloneScreen extends Component{
 
                         <View style={styles.reportContainer} key={index}>
                             <Text style={styles.reportTitle}>{report.fields.title}</Text>
-                            <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={() => this.onMoreInfo(report.href)}/>
+                            <Button buttonStyle={styles.moreInfoButton} title="More info" onPress={() => this.onMoreInfo(report.href)}/>
                         </View>
 
                     )}
@@ -45,7 +45,7 @@ class CycloneScreen extends Component{
 
                         <View style={styles.reportContainer} key={index}>
                             <Text style={styles.reportTitle}>{report.fields.name}</Text>
-                            <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={() => this.onMoreInfo(report.href)}/>
+                            <Button buttonStyle={styles.moreInfoButton} title="More info" onPress={() => this.onMoreInfo(report.href)}/>
                         </View>
 
                     )}
