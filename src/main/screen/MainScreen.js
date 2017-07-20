@@ -24,7 +24,7 @@ class MainScreen extends Component {
             {title: "Heat Wave", avatar:img.heatwave, path: "heatWave"},
             //{title: "Land / Mud Slide", path: "landMud"},
             //{title: "Severe Local Storm", path: "localStorm"},
-            {title: "Avalanche", avatar:avalanche, path: "avalanche"},
+            {title: "Avalanche", avatar:img.avalanche, path: "avalanche"},
             //{title: "Storm Surge", path: "stormSurge"},
             {title: "Tsunami", avatar:img.tsunami, path: "tsunami"},
             {title: "Volcano", avatar:img.volcano, path: "volcano"},

@@ -9,7 +9,7 @@ class SettingsScreen extends Component{
     render(){
         return(
             <View style={styles.container}>
-                <Text style={styles.title}>Settings</Text>
+                <Text style={styles.title}>Settings - Work in Progress</Text>
                 <View style={styles.settingsContainer}>
                     <Button buttonStyle={styles.button} title="Push Notification Settings"
                             onPress={()=>this.props.navigation.navigate('pushnotification')} />
