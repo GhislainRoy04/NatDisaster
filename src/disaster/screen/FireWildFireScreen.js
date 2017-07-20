@@ -70,8 +70,12 @@ class FireWildFireScreen extends Component{
         Api.getMoreInfo(uri).then((res)=>{
             this.setState({moreInfo:res.data.data[0]});
         }).then(() => {
-            let {moreInfo} = this.state;
-            Alert.alert(moreInfo.fields.title,moreInfo.fields.body);
+            let {moreInfo,selectedIndex} = this.state;
+            if(selectedIndex===0) {
+                Alert.alert(moreInfo.fields.title, moreInfo.fields.body);
+            }else{
+                Alert.alert(moreInfo.fields.name,moreInfo.fields.description);
+            }
         })
     }
 
