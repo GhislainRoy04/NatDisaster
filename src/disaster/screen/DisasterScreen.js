@@ -1,19 +1,15 @@
 'use strict';
 import React,{Component} from "react";
-import {ScrollView,Text,View,Alert} from "react-native";
+import {View,Text,ScrollView,Alert} from "react-native";
 import {Button,ButtonGroup,Card} from "react-native-elements";
 import {Api} from "../../api";
 import styles from "./DisasterCommonStyleSheet";
 
-class AvalancheScreen extends Component{
-    static navigationOptions = ({navigation}) =>({
-        title:'Avalanche'
-    });
+class EarthquakeScreen extends Component{
 
     constructor(props){
         super(props);
-        this.state=({summary:[],reports:[],moreInfo:[],selectedIndex:-1});
-
+        this.state=({summary:[],reports:[],moreInfo:[],selectedIndex:-1,type:props.navigation.state.routeName});
         this.onReportPress=this.onReportPress.bind(this);
         this.onMoreInfo = this.onMoreInfo.bind(this);
         this.updateIndex = this.updateIndex.bind(this);
@@ -53,14 +49,15 @@ class AvalancheScreen extends Component{
             </View>
         )
     }
+
     onReportPress(){
-        Api.getReportsByType('avalanche').then((res) => {
+        Api.getReportsByType(this.state.type).then((res) => {
             this.setState({reports:res.data.data});
         });
     }
 
     onSummaryPress(){
-        Api.getDisasterByType('avalanche').then((res) => {
+        Api.getDisasterByType(this.state.type).then((res) => {
             this.setState({summary:res.data.data});
         });
     }
@@ -93,4 +90,4 @@ class AvalancheScreen extends Component{
     }
 }
 
-export default (AvalancheScreen);
+export default (EarthquakeScreen);
