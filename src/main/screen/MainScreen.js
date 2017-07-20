@@ -1,8 +1,9 @@
 'use strict';
 import React, {Component} from "react";
 import {ScrollView, View,Text,Dimensions} from "react-native";
-import {Button, List, ListItem,Avatar} from "react-native-elements";
+import {List, ListItem,Avatar} from "react-native-elements";
 import Carousel from "react-native-looped-carousel";
+import Spinner from "react-native-loading-spinner-overlay";
 import {Api} from "../../api";
 import styles from "./MainStyleSheet";
 import * as img from "../images";
@@ -16,12 +17,13 @@ class MainScreen extends Component {
 
     constructor(props){
         super(props);
-        this.state=({headLine:[],size:{width:Dimensions.get('window').width,height:50}});
+        this.state=({headLine:[],size:{width:Dimensions.get('window').width,height:50},visible:false});
     }
 
     componentWillMount(){
+        this.setState({visible:true});
         Api.getHeadline().then((res) => {
-            this.setState({headLine:res.data.data});
+            this.setState({headLine:res.data.data,visible:false});
         });
     }
 
@@ -48,10 +50,11 @@ class MainScreen extends Component {
             {title: "Tsunami", avatar:img.tsunami, path: "tsunami"},
             {title: "Volcano", avatar:img.volcano, path: "volcano"},
         ];
-        let {headLine,size} = this.state;
+        let {headLine,size,visible} = this.state;
 
         return (
             <View>
+                <Spinner visible={visible} textContent={"Loading...."} />
                 <View style={{marginBottom:-20}} onLayout={this._onLayoutDidChange}>
                     <Carousel
                     autoplay={headLine.length>0}
@@ -62,7 +65,7 @@ class MainScreen extends Component {
                                 <Text style={styles.headerLineText}>{report.fields.title}</Text>
                             </View>
                         ):
-                        <View style={size}><Text>Loading Headline...</Text></View>
+                        <View style={size}><Text> </Text></View>
                         }
 
                     </Carousel>
