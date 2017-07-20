@@ -1,7 +1,7 @@
 'use strict';
 import React,{Component} from "react";
 import {View,Text,ScrollView,Alert} from "react-native";
-import {Button,ButtonGroup} from "react-native-elements";
+import {Button,ButtonGroup,Card} from "react-native-elements";
 import {Api} from "../../api";
 import styles from "./DisasterCommonStyleSheet";
 
@@ -34,19 +34,19 @@ class FireWildFireScreen extends Component{
                 <ScrollView contentContainerStyle={{marginTop:10,flexDirection:'column',justifyContent:'space-between'}}>
                     {reports.map((report,index)=>
 
-                        <View style={styles.reportContainer} key={index}>
+                        <Card key={index}>
                             <Text style={styles.reportTitle}>{report.fields.title}</Text>
                             <Button buttonStyle={styles.moreInfoButton} title="More info" onPress={() => this.onMoreInfo(report.href)}/>
-                        </View>
+                        </Card>
 
                     )}
 
                     {summary.map((report,index)=>
 
-                        <View style={styles.reportContainer} key={index}>
+                        <Card key={index}>
                             <Text style={styles.reportTitle}>{report.fields.name}</Text>
                             <Button buttonStyle={styles.moreInfoButton} title="More info" onPress={() => this.onMoreInfo(report.href)}/>
-                        </View>
+                        </Card>
 
                     )}
                 </ScrollView>
