@@ -2,6 +2,7 @@
 import React,{Component} from "react";
 import {View,Text,ScrollView,Alert} from "react-native";
 import {Button,ButtonGroup,Card} from "react-native-elements";
+import Spinner from "react-native-loading-spinner-overlay";
 import {Api} from "../../api";
 import styles from "./DisasterCommonStyleSheet";
 
@@ -9,7 +10,7 @@ class EarthquakeScreen extends Component{
 
     constructor(props){
         super(props);
-        this.state=({summary:[],reports:[],moreInfo:[],selectedIndex:0,type:props.navigation.state.routeName});
+        this.state=({summary:[],reports:[],moreInfo:[],selectedIndex:0,type:props.navigation.state.routeName,visible:false});
         this.onReportPress=this.onReportPress.bind(this);
         this.onMoreInfo = this.onMoreInfo.bind(this);
         this.updateIndex = this.updateIndex.bind(this);
@@ -20,10 +21,11 @@ class EarthquakeScreen extends Component{
     }
 
     render(){
-        let {selectedIndex,summary,reports} = this.state;
+        let {selectedIndex,summary,reports,visible} = this.state;
         const buttons = ['Reports','Summary'];
         return(
             <View>
+                <Spinner visible={visible} textContent={"Loading...."} />
                 <ButtonGroup
                     onPress={this.updateIndex}
                     selectedIndex={selectedIndex}
@@ -55,22 +57,26 @@ class EarthquakeScreen extends Component{
     }
 
     onReportPress(){
+        this.setState({visible:true});
         Api.getReportsByType(this.state.type).then((res) => {
-            this.setState({reports:res.data.data});
+            this.setState({reports:res.data.data,visible:false});
         });
     }
 
     onSummaryPress(){
+        this.setState({visible:true});
         Api.getDisasterByType(this.state.type).then((res) => {
-            this.setState({summary:res.data.data});
+            this.setState({summary:res.data.data,visible:false});
         });
     }
 
     onMoreInfo(uri){
+        this.setState({visible:true});
         Api.getMoreInfo(uri).then((res)=>{
             this.setState({moreInfo:res.data.data[0]});
         }).then(() => {
             let {moreInfo,selectedIndex} = this.state;
+            this.setState({visible:false});
             if(selectedIndex===0) {
                 Alert.alert(moreInfo.fields.title, moreInfo.fields.body);
             }else{
