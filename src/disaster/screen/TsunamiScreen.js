@@ -1,28 +1,28 @@
 'use strict';
-import React,{Component} from "react";
-import {View,Text,ScrollView} from "react-native";
-import {Button,ButtonGroup} from "react-native-elements";
+import React, {Component} from "react";
+import {View, Text, ScrollView,Alert} from "react-native";
+import {Button, ButtonGroup} from "react-native-elements";
 import {Api} from "../../api";
 import styles from "./DisasterCommonStyleSheet";
 
-class TsunamiScreen extends Component{
-    static navigationOptions = ({navigation}) =>({
-        title:'Tsunami'
+class TsunamiScreen extends Component {
+    static navigationOptions = ({navigation}) => ({
+        title: 'Tsunami'
     });
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state=({summary:[],reports:[],moreInfo:[],selectedIndex:-1});
+        this.state = ({summary: [], reports: [], moreInfo: [], selectedIndex: -1});
 
-        this.onReportPress=this.onReportPress.bind(this);
+        this.onReportPress = this.onReportPress.bind(this);
         this.onMoreInfo = this.onMoreInfo.bind(this);
         this.updateIndex = this.updateIndex.bind(this);
     }
 
-    render(){
-        let {selectedIndex,summary,reports,moreInfo} = this.state;
-        const buttons = ['Reports','Summary'];
-        return(
+    render() {
+        let {selectedIndex, summary, reports, moreInfo} = this.state;
+        const buttons = ['Reports', 'Summary'];
+        return (
             <View>
                 <ButtonGroup
                     onPress={this.updateIndex}
@@ -31,23 +31,24 @@ class TsunamiScreen extends Component{
                     containerStyle={{height: 50}}
                 />
 
-                <ScrollView contentContainerStyle={{marginTop:10,flexDirection:'column',justifyContent:'space-between'}}>
-                    {reports.map((report,index)=>
+                <ScrollView
+                    contentContainerStyle={{marginTop: 10, flexDirection: 'column', justifyContent: 'space-between'}}>
+                    {reports.map((report, index) =>
 
                         <View style={styles.reportContainer} key={index}>
                             <Text style={styles.reportTitle}>{report.fields.title}</Text>
-                            <Button buttonStyle={styles.moreInfoButton} title="More info" onPress={() => this.onMoreInfo(report.href)}/>
+                            <Button buttonStyle={styles.moreInfoButton} title="More info"
+                                    onPress={() => this.onMoreInfo(report.href)}/>
                         </View>
-
                     )}
 
-                    {summary.map((report,index)=>
+                    {summary.map((report, index) =>
 
                         <View style={styles.reportContainer} key={index}>
                             <Text style={styles.reportTitle}>{report.fields.name}</Text>
-                            <Button buttonStyle={styles.moreInfoButton} title="More info" onPress={() => this.onMoreInfo(report.href)}/>
+                            <Button buttonStyle={styles.moreInfoButton} title="More info"
+                                    onPress={() => this.onMoreInfo(report.href)}/>
                         </View>
-
                     )}
 
                     {moreInfo &&
@@ -63,34 +64,37 @@ class TsunamiScreen extends Component{
         )
     }
 
-    onReportPress(){
+    onReportPress() {
         Api.getReportsByType('tsunami').then((res) => {
-            this.setState({reports:res.data.data});
+            this.setState({reports: res.data.data});
         });
     }
 
-    onSummaryPress(){
+    onSummaryPress() {
         Api.getDisasterByType('tsunami').then((res) => {
-            this.setState({summary:res.data.data});
+            this.setState({summary: res.data.data});
         });
     }
 
-    onMoreInfo(uri){
-        Api.getMoreInfo(uri).then((res)=>{
-            this.setState({moreInfo:res.data.data[0]});
+    onMoreInfo(uri) {
+        Api.getMoreInfo(uri).then((res) => {
+            this.setState({moreInfo: res.data.data[0]});
+        }).then((res) => {
+            let {moreInfo} = this.state;
+            Alert.alert(moreInfo.fields.title,moreInfo.fields.body);
         })
     }
 
-    updateIndex (selectedIndex) {
+    updateIndex(selectedIndex) {
         this.setState({selectedIndex});
 
-        if(selectedIndex===0){
-            this.setState({summary:[],moreInfo:[]});
+        if (selectedIndex === 0) {
+            this.setState({summary: [], moreInfo: []});
             this.onReportPress();
         }
 
-        if(selectedIndex===1){
-            this.setState({reports:[],moreInfo:[]});
+        if (selectedIndex === 1) {
+            this.setState({reports: [], moreInfo: []});
             this.onSummaryPress();
         }
     }

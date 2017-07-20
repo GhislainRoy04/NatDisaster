@@ -1,7 +1,8 @@
 'use strict';
 import React, {Component} from "react";
 import {ScrollView, View} from "react-native";
-import {Button, List, ListItem} from "react-native-elements";
+import {Button, List, ListItem,Avatar} from "react-native-elements";
+import * as img from "../images";
 
 class MainScreen extends Component {
     static navigationOptions = ({navigation}) => ({
@@ -10,27 +11,23 @@ class MainScreen extends Component {
                              color="white" onPress={() => navigation.navigate('settings')}/>
     });
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const list = [
-            {title: "Cold Wave", path: "coldWave"},
-            {title: "Drought", path: "drought"},
-            {title: "Earthquake", path: "earthquake"},
-            {title: "Viral Outbreak", path: "epidemic"},
-            {title: "Cyclone", path: "cyclone"},
-            {title: "Fire / Wild Fire", path: "fire"},
-            {title: "Flash Flood", path: "flashFlood"},
-            {title: "Flood", path: "flood"},
-            {title: "Heat Wave", path: "heatWave"},
-            {title: "Land / Mud Slide", path: "landMud"},
+            //{title: "Cold Wave", path: "coldWave"},
+            {title: "Drought", avatar:img.drought, path: "drought"},
+            {title: "Earthquake", avatar:img.earthquake, path: "earthquake"},
+            {title: "Viral Outbreak", avatar:img.viral, path: "epidemic"},
+            {title: "Cyclone", avatar:img.tornado, path: "cyclone"},
+            {title: "Fire / Wild Fire",avatar:img.fire, path: "fire"},
+            //{title: "Flash Flood", path: "flashFlood"},
+            {title: "Flood", avatar:img.flood, path: "flood"},
+            {title: "Heat Wave", avatar:img.heatwave, path: "heatWave"},
+            //{title: "Land / Mud Slide", path: "landMud"},
             //{title: "Severe Local Storm", path: "localStorm"},
-            {title: "Avalanche", path: "avalanche"},
+            {title: "Avalanche", avatar:avalanche, path: "avalanche"},
             //{title: "Storm Surge", path: "stormSurge"},
-            {title: "Tsunami", path: "tsunami"},
-            {title: "Volcano", path: "volcano"},
+            {title: "Tsunami", avatar:img.tsunami, path: "tsunami"},
+            {title: "Volcano", avatar:img.volcano, path: "volcano"},
         ];
 
         return (
@@ -41,6 +38,7 @@ class MainScreen extends Component {
                             <ListItem
                                 key={index}
                                 switchButton
+                                avatar={<Avatar rounded source={item.avatar} />}
                                 title={item.title}
                                 onPress={() => this.props.navigation.navigate(item.path)}
                             />

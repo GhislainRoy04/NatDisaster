@@ -1,6 +1,6 @@
 'use strict';
 import React,{Component} from "react";
-import {View,Text,ScrollView} from "react-native";
+import {View,Text,ScrollView,Alert} from "react-native";
 import {Button,ButtonGroup} from "react-native-elements";
 import {Api} from "../../api";
 import styles from "./DisasterCommonStyleSheet";
@@ -75,6 +75,9 @@ class LandMudSlideScreen extends Component{
     onMoreInfo(uri){
         Api.getMoreInfo(uri).then((res)=>{
             this.setState({moreInfo:res.data.data[0]});
+        }).then((res) => {
+            let {moreInfo} = this.state;
+            Alert.alert(moreInfo.fields.title,moreInfo.fields.body);
         })
     }
 
