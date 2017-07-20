@@ -1,0 +1,11 @@
+'use strict';
+export {default as avalanche} from "./avalanche.png";
+export {default as drought} from "./drought.png";
+export {default as earthquake} from "./earthquake.png";
+export {default as fire} from "./fire.png";
+export {default as flood} from "./flood.png";
+export {default as tsunami} from "./tsunami.png";
+export { default as heatwave} from "./heatwave.png";
+export {default as tornado} from "./torando.png";
+export {default as viral} from "./viral.png";
+export {default as volcano} from "./volcano.png";

@@ -1,8 +1,9 @@
 'use strict';
 import React,{Component} from "react";
-import {Text,View,ScrollView} from "react-native";
-import {Button,ButtonGroup} from "react-native-elements";
+import {Text,View,ScrollView,Alert} from "react-native";
+import {Button,ButtonGroup,Card} from "react-native-elements";
 import {Api} from "../../api";
+import styles from "./DisasterCommonStyleSheet";
 
 class ColdWaveScreen extends Component{
     static navigationOptions = ({navigation}) =>({
@@ -19,7 +20,7 @@ class ColdWaveScreen extends Component{
     }
 
     render(){
-        let {selectedIndex,summary,reports,moreInfo} = this.state;
+        let {selectedIndex,summary,reports,} = this.state;
         const buttons = ['Reports','Summary'];
         return(
             <View>
@@ -30,32 +31,24 @@ class ColdWaveScreen extends Component{
                     containerStyle={{height: 50}}
                 />
 
-                <ScrollView contentContainerStyle={{marginTop:10,alignItems:'center',flexDirection:'column',justifyContent:'space-between'}}>
+                <ScrollView contentContainerStyle={{marginTop:10,flexDirection:'column',justifyContent:'space-between'}}>
                     {reports.map((report,index)=>
 
-                    <View  key={index}>
-                        <Text>{report.fields.title}</Text>
-                        <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={() => this.onMoreInfo(report.href)}/>
-                    </View>
+                    <Card key={index}>
+                        <Text style={styles.reportTitle}>{report.fields.title}</Text>
+                        <Button buttonStyle={styles.moreInfoButton} title="More info" onPress={() => this.onMoreInfo(report.href)}/>
+                    </Card>
 
                     )}
 
                     {summary.map((report,index)=>
 
-                        <View  key={index}>
+                        <Card key={index}>
                             <Text>{report.fields.name}</Text>
-                            <Button buttonStyle={{width:100,borderRadius:25}} title="More info" onPress={()=>this.onMoreInfo(report.href)}/>
-                        </View>
+                            <Button buttonStyle={styles.moreInfoButton} title="More info" onPress={()=>this.onMoreInfo(report.href)}/>
+                        </Card>
 
                     )}
-
-                    {moreInfo &&
-                        <View>
-                            <Text>{moreInfo.fields && moreInfo.fields.title}</Text>
-                            <Text>{moreInfo.fields && moreInfo.fields.primary_country.name}</Text>
-                            <Text>{moreInfo.fields && moreInfo.fields.body}</Text>
-                        </View>
-                    }
                 </ScrollView>
             </View>
         )
@@ -76,6 +69,13 @@ class ColdWaveScreen extends Component{
     onMoreInfo(uri){
         Api.getMoreInfo(uri).then((res)=>{
             this.setState({moreInfo:res.data.data[0]});
+        }).then(() => {
+            let {moreInfo,selectedIndex} = this.state;
+            if(selectedIndex===0) {
+                Alert.alert(moreInfo.fields.title, moreInfo.fields.body);
+            }else{
+                Alert.alert(moreInfo.fields.name,moreInfo.fields.description);
+            }
         })
     }
 

@@ -1,9 +1,8 @@
 'use strict';
 import React, {Component} from "react";
 import {ScrollView, View} from "react-native";
-import {Button} from "react-native-elements";
-import styles from "./MainStyleSheet";
-import {Api} from "../../api";
+import {Button, List, ListItem,Avatar} from "react-native-elements";
+import * as img from "../images";
 
 class MainScreen extends Component {
     static navigationOptions = ({navigation}) => ({
@@ -12,29 +11,39 @@ class MainScreen extends Component {
                              color="white" onPress={() => navigation.navigate('settings')}/>
     });
 
-    constructor(props){
-        super(props);
-    }
-
     render() {
+        const list = [
+            //{title: "Cold Wave", path: "coldWave"},
+            {title: "Drought", avatar:img.drought, path: "drought"},
+            {title: "Earthquake", avatar:img.earthquake, path: "earthquake"},
+            {title: "Viral Outbreak", avatar:img.viral, path: "epidemic"},
+            {title: "Cyclone", avatar:img.tornado, path: "cyclone"},
+            {title: "Fire / Wild Fire",avatar:img.fire, path: "fire"},
+            //{title: "Flash Flood", path: "flashFlood"},
+            {title: "Flood", avatar:img.flood, path: "flood"},
+            {title: "Heat Wave", avatar:img.heatwave, path: "heatWave"},
+            //{title: "Land / Mud Slide", path: "landMud"},
+            //{title: "Severe Local Storm", path: "localStorm"},
+            {title: "Avalanche", avatar:img.avalanche, path: "avalanche"},
+            //{title: "Storm Surge", path: "stormSurge"},
+            {title: "Tsunami", avatar:img.tsunami, path: "tsunami"},
+            {title: "Volcano", avatar:img.volcano, path: "volcano"},
+        ];
+
         return (
             <View>
                 <ScrollView>
-                    <Button onPress={() => this.props.navigation.navigate('coldWave')} buttonStyle={styles.button} title="Cold Wave"/>
-                    <Button onPress={() => this.props.navigation.navigate('drought')} buttonStyle={styles.button} title="Drought"/>
-                    <Button onPress={() => this.props.navigation.navigate('earthquake')} buttonStyle={styles.button} title="EarthQuake"/>
-                    <Button onPress={() => this.props.navigation.navigate('epidemic')} buttonStyle={styles.button} title="Epidemic"/>
-                    <Button onPress={() => this.props.navigation.navigate('cyclone')} buttonStyle={styles.button} title="Cyclone"/>
-                    <Button onPress={() => this.props.navigation.navigate('fire')} buttonStyle={styles.button} title="Fire / Wild Fire"/>
-                    <Button onPress={() => this.props.navigation.navigate('flashFlood')} buttonStyle={styles.button} title="Flash Flood"/>
-                    <Button onPress={() => this.props.navigation.navigate('flood')} buttonStyle={styles.button} title="Flood"/>
-                    <Button onPress={() => this.props.navigation.navigate('heatWave')} buttonStyle={styles.button} title="Heat Wave"/>
-                    <Button onPress={() => this.props.navigation.navigate('landMud')} buttonStyle={styles.button} title="Land / Mud Slide"/>
-                    <Button onPress={() => this.props.navigation.navigate('localStorm')} buttonStyle={styles.button} title="Severe Local Storm"/>
-                    <Button onPress={() => this.props.navigation.navigate('avalanche')} buttonStyle={styles.button} title="Avalanche"/>
-                    <Button onPress={() => this.props.navigation.navigate('stormSurge')} buttonStyle={styles.button} title="Storm Surge"/>
-                    <Button onPress={() => this.props.navigation.navigate('tsunami')} buttonStyle={styles.button} title="Tsunami"/>
-                    <Button onPress={() => this.props.navigation.navigate('volcano')} buttonStyle={styles.button} title="Volcano"/>
+                    <List>
+                        {list.map((item, index) => (
+                            <ListItem
+                                key={index}
+                                switchButton
+                                avatar={<Avatar rounded source={item.avatar} />}
+                                title={item.title}
+                                onPress={() => this.props.navigation.navigate(item.path)}
+                            />
+                        ))}
+                    </List>
                 </ScrollView>
             </View>
         )
