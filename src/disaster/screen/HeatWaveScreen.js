@@ -20,7 +20,7 @@ class HeatWaveScreen extends Component{
     }
 
     render(){
-        let {selectedIndex,reports,summary,moreInfo} = this.state;
+        let {selectedIndex,reports,summary} = this.state;
         const buttons = ['Reports','Summary'];
         return(
             <View>
@@ -48,14 +48,6 @@ class HeatWaveScreen extends Component{
                         </View>
 
                     )}
-
-                    {moreInfo &&
-                    <View>
-                        <Text>{moreInfo.fields && moreInfo.fields.title}</Text>
-                        <Text>{moreInfo.fields && moreInfo.fields.primary_country.name}</Text>
-                        <Text>{moreInfo.fields && moreInfo.fields.body}</Text>
-                    </View>
-                    }
                 </ScrollView>
             </View>
         )
@@ -75,7 +67,7 @@ class HeatWaveScreen extends Component{
     onMoreInfo(uri){
         Api.getMoreInfo(uri).then((res)=>{
             this.setState({moreInfo:res.data.data[0]});
-        }).then((res) => {
+        }).then(() => {
             let {moreInfo} = this.state;
             Alert.alert(moreInfo.fields.title,moreInfo.fields.body);
         })

@@ -20,7 +20,7 @@ class FireWildFireScreen extends Component{
     }
 
     render(){
-        let {selectedIndex,moreInfo,summary,reports} = this.state;
+        let {selectedIndex,summary,reports} = this.state;
         const buttons = ['Reports','Summary'];
         return(
             <View>
@@ -49,15 +49,6 @@ class FireWildFireScreen extends Component{
                         </View>
 
                     )}
-
-                    {moreInfo &&
-                    <View>
-                        <Text>{moreInfo.fields && moreInfo.fields.title}</Text>
-                        <Text>{moreInfo.fields && moreInfo.fields.primary_country.name}</Text>
-                        <Text>{moreInfo.fields && moreInfo.fields.body}</Text>
-                    </View>
-                    }
-
                 </ScrollView>
             </View>
         )
@@ -78,7 +69,7 @@ class FireWildFireScreen extends Component{
     onMoreInfo(uri){
         Api.getMoreInfo(uri).then((res)=>{
             this.setState({moreInfo:res.data.data[0]});
-        }).then((res) => {
+        }).then(() => {
             let {moreInfo} = this.state;
             Alert.alert(moreInfo.fields.title,moreInfo.fields.body);
         })
