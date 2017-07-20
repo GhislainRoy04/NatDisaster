@@ -4,7 +4,7 @@ import {Alert} from "react-native";
 
 const reportURL = "https://api.reliefweb.int/v1/reports?appname=natdisaster&limit=50&preset=latest";
 const disasterURL = "https://api.reliefweb.int/v1/disasters?appname=natdisaster&limit=50";
-const latestURL = "https://api.reliefweb.int/v1/reports?appname=natdisaster&limit=1&preset=latest";
+const latestURL = "https://api.reliefweb.int/v1/reports?appname=natdisaster&limit=3&preset=latest";
 
 export  default ({
     getDisasterByType: function (type) {

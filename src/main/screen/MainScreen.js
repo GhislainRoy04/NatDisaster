@@ -1,7 +1,9 @@
 'use strict';
 import React, {Component} from "react";
-import {ScrollView, View} from "react-native";
+import {ScrollView, View,Text,Dimensions} from "react-native";
 import {Button, List, ListItem,Avatar} from "react-native-elements";
+import Carousel from "react-native-looped-carousel";
+import {Api} from "../../api";
 import * as img from "../images";
 
 class MainScreen extends Component {
@@ -10,6 +12,22 @@ class MainScreen extends Component {
         headerRight: <Button title="Settings" raised backgroundColor="blue"
                              color="white" onPress={() => navigation.navigate('settings')}/>
     });
+
+    constructor(props){
+        super(props);
+        this.state=({headLine:[],size:{width:Dimensions.get('window').width,height:50}});
+    }
+
+    componentWillMount(){
+        Api.getHeadline().then((res) => {
+            this.setState({headLine:res.data.data});
+        });
+    }
+
+    _onLayoutDidChange=(e)=>{
+        const layout = e.nativeEvent.layout;
+        this.setState({ size: {...this.state.size, width: layout.width} });
+    };
 
     render() {
         const list = [
@@ -29,9 +47,23 @@ class MainScreen extends Component {
             {title: "Tsunami", avatar:img.tsunami, path: "tsunami"},
             {title: "Volcano", avatar:img.volcano, path: "volcano"},
         ];
+        let {headLine,size} = this.state;
 
         return (
             <View>
+                <View onLayout={this._onLayoutDidChange}>
+                    <Carousel
+                    autoplay={headLine.length>0}
+                    style={size}
+                    delay={5000}>
+                        {headLine.length>0 ? headLine.map((report,index)=>
+                            <View style={size} key={index}><Text>{report.fields.title}</Text></View>
+                        ):
+                        <View style={size}><Text>Loading Headline...</Text></View>
+                        }
+
+                    </Carousel>
+                </View>
                 <ScrollView>
                     <List>
                         {list.map((item, index) => (
