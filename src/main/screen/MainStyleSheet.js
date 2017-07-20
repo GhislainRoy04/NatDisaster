@@ -1,8 +1,14 @@
 'use strict';
-import {StyleSheet,Dimensions} from "react-native";
+import {StyleSheet} from "react-native";
 
 export default StyleSheet.create({
-    button:{
-        width: Dimensions.get('window').width
+    headLineContainer:{
+        backgroundColor:"#faff50",
+        justifyContent:'center',
+    },
+    headerLineText:{
+        textAlign:'center',
+        fontSize:14,
+        fontWeight:'bold'
     }
 });

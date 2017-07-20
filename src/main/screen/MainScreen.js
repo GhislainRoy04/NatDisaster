@@ -4,13 +4,14 @@ import {ScrollView, View,Text,Dimensions} from "react-native";
 import {Button, List, ListItem,Avatar} from "react-native-elements";
 import Carousel from "react-native-looped-carousel";
 import {Api} from "../../api";
+import styles from "./MainStyleSheet";
 import * as img from "../images";
 
 class MainScreen extends Component {
     static navigationOptions = ({navigation}) => ({
         title: "Disaster",
-        headerRight: <Button title="Settings" raised backgroundColor="blue"
-                             color="white" onPress={() => navigation.navigate('settings')}/>
+        //headerRight: <Button title="Settings" raised backgroundColor="blue"
+          //                   color="white" onPress={() => navigation.navigate('settings')}/>
     });
 
     constructor(props){
@@ -51,13 +52,15 @@ class MainScreen extends Component {
 
         return (
             <View>
-                <View onLayout={this._onLayoutDidChange}>
+                <View style={{marginBottom:-20}} onLayout={this._onLayoutDidChange}>
                     <Carousel
                     autoplay={headLine.length>0}
                     style={size}
                     delay={5000}>
                         {headLine.length>0 ? headLine.map((report,index)=>
-                            <View style={size} key={index}><Text>{report.fields.title}</Text></View>
+                            <View style={[styles.headLineContainer,size]} key={index}>
+                                <Text style={styles.headerLineText}>{report.fields.title}</Text>
+                            </View>
                         ):
                         <View style={size}><Text>Loading Headline...</Text></View>
                         }
