@@ -14,7 +14,8 @@ export default StyleSheet.create({
         fontWeight:'bold'
     },
     moreInfoButton:{
-        width:100,
+        marginLeft:0,
+        marginRight:0,
         borderRadius:25,
         marginBottom:10,
         marginTop:10
