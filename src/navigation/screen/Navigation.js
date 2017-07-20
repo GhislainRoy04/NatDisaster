@@ -3,7 +3,7 @@ import React, {Component} from "react";
 import {StackNavigator} from "react-navigation";
 import {MainScreen} from "../../main";
 import {SettingsScreen, PushNotificationScreen} from "../../settings";
-import * as disaster from "../../disaster";
+import {DisasterScreen} from "../../disaster";
 
 class Navigation extends Component {
     render() {
@@ -36,100 +36,143 @@ class Navigation extends Component {
                 }
             },
             earthquake: {
-                screen: disaster.EarthquakeScreen,
-                headerMode:"float",
+                screen: DisasterScreen,
+                headerMode: "float",
                 navigationOptions: {
+                    title: "Earthquake",
                     headerStyle: {
                         marginTop: 25
                     }
                 }
             },
-            volcano:{
-                screen:disaster.VolcanoScreen,
+            volcano: {
+                screen: DisasterScreen,
                 navigationOptions: {
+                    title: "Volcano",
                     headerStyle: {
                         marginTop: 25
                     }
                 }
             },
-            avalanche:{screen:disaster.AvalancheScreen, headerMode:"float",
+            avalanche: {
+                screen: DisasterScreen, headerMode: "float",
                 navigationOptions: {
+                    title: "Avalanche",
                     headerStyle: {
                         marginTop: 25
                     }
-                }},
-            coldWave:{screen:disaster.ColdWaveScreen, headerMode:"float",
+                }
+            },
+            coldWave: {
+                screen: DisasterScreen, headerMode: "float",
                 navigationOptions: {
+                    title: "Cold Wave",
                     headerStyle: {
                         marginTop: 25
                     }
-                }},
-            cyclone:{screen:disaster.CycloneScreen, headerMode:"float",
+                }
+            },
+            cyclone: {
+                screen: DisasterScreen, headerMode: "float",
                 navigationOptions: {
+                    title: "Cyclone",
                     headerStyle: {
                         marginTop: 25
                     }
-                }},
-            drought:{screen:disaster.DroughtScreen, headerMode:"float",
+                }
+            },
+            drought: {
+                screen: DisasterScreen, headerMode: "float",
                 navigationOptions: {
+                    title: "Drought",
                     headerStyle: {
                         marginTop: 25
                     }
-                }},
-            epidemic:{screen:disaster.EpidemicScreen, headerMode:"float",
+                }
+            },
+            epidemic: {
+                screen: DisasterScreen, headerMode: "float",
                 navigationOptions: {
+                    title: "Viral Outbreak",
+                    headerStyle: {
+
+                        marginTop: 25
+                    }
+                }
+            },
+            fire: {
+                screen: DisasterScreen, headerMode: "float",
+                navigationOptions: {
+                    title: "Fire / Wild Fire",
                     headerStyle: {
                         marginTop: 25
                     }
-                }},
-            fire:{screen:disaster.FireWildFireScreen, headerMode:"float",
+                }
+            },
+            flashFlood: {
+                screen: DisasterScreen, headerMode: "float",
                 navigationOptions: {
+                    title: "Flash Flood",
+                    headerStyle: {
+
+                        marginTop: 25
+                    }
+                }
+            },
+            flood: {
+                screen: DisasterScreen, headerMode: "float",
+                navigationOptions: {
+                    title: "Flood",
                     headerStyle: {
                         marginTop: 25
                     }
-                }},
-            flashFlood:{screen:disaster.FlashFloodScreen, headerMode:"float",
+                }
+            },
+            heatWave: {
+                screen: DisasterScreen, headerMode: "float",
                 navigationOptions: {
+                    title: "Heat Wave",
                     headerStyle: {
                         marginTop: 25
                     }
-                }},
-            flood:{screen:disaster.FloodScreen, headerMode:"float",
+                }
+            },
+            landMud: {
+                screen: DisasterScreen, headerMode: "float",
                 navigationOptions: {
+                    title: "Land Slide",
                     headerStyle: {
                         marginTop: 25
                     }
-                }},
-            heatWave:{screen:disaster.HeatWaveScreen, headerMode:"float",
+                }
+            },
+            localStorm: {
+                screen: DisasterScreen, headerMode: "float",
                 navigationOptions: {
+                    title: "Local Storm",
                     headerStyle: {
                         marginTop: 25
                     }
-                }},
-            landMud:{screen:disaster.LandMudSlideScreen, headerMode:"float",
+                }
+            },
+            stormSurge: {
+                screen: DisasterScreen, headerMode: "float",
                 navigationOptions: {
+                    title: "Storm Surge",
                     headerStyle: {
                         marginTop: 25
                     }
-                }},
-            localStorm:{screen:disaster.LocalStormScreen, headerMode:"float",
+                }
+            },
+            tsunami: {
+                screen: DisasterScreen, headerMode: "float",
                 navigationOptions: {
+                    title: "Tsunami",
                     headerStyle: {
                         marginTop: 25
                     }
-                }},
-            stormSurge:{screen:disaster.StormSurgeScreen, headerMode:"float",
-                navigationOptions: {
-                    headerStyle: {
-                        marginTop: 25
-                    }
-                }},
-            tsunami:{screen:disaster.TsunamiScreen, headerMode:"float",
-                navigationOptions: {
-                    headerStyle: {
-                        marginTop: 25
-                    }
-                }},
+                }
+            },
         });
 
         return (
