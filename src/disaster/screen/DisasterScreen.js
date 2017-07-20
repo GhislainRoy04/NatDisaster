@@ -9,10 +9,14 @@ class EarthquakeScreen extends Component{
 
     constructor(props){
         super(props);
-        this.state=({summary:[],reports:[],moreInfo:[],selectedIndex:-1,type:props.navigation.state.routeName});
+        this.state=({summary:[],reports:[],moreInfo:[],selectedIndex:0,type:props.navigation.state.routeName});
         this.onReportPress=this.onReportPress.bind(this);
         this.onMoreInfo = this.onMoreInfo.bind(this);
         this.updateIndex = this.updateIndex.bind(this);
+    }
+
+    componentWillMount(){
+        this.onReportPress();
     }
 
     render(){
