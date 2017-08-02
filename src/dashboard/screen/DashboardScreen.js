@@ -5,10 +5,10 @@ import {List, ListItem, Avatar} from "react-native-elements";
 import Carousel from "react-native-looped-carousel";
 import Spinner from "react-native-loading-spinner-overlay";
 import {Api} from "../../api";
-import styles from "./MainStyleSheet";
+import styles from "./DashboardStyleSheet";
 import * as img from "../images";
 
-class MainScreen extends Component {
+class DashboardScreen extends Component {
     static navigationOptions = ({navigation}) => ({
         title: "Disaster",
         //headerRight: <Button title="Settings" raised backgroundColor="blue"
@@ -52,40 +52,40 @@ class MainScreen extends Component {
             {title: "Volcano", avatar: img.volcano, path: "volcano"},
         ];
         let {headLine, size, visible} = this.state;
-        return (
-            <View>
-                <Spinner visible={visible} textContent={"Loading...."}/>
-                <View style={{marginBottom: -20}} onLayout={this._onLayoutDidChange}>
-                    <Carousel
-                        autoplay
-                        style={size}
-                        delay={5000}>
-                        {headLine.length > 0 ? headLine.map((report, index) =>
-                                <TouchableOpacity onPress={() => this.onMoreInfo(report.href)}
-                                                  style={[styles.headLineContainer, size]} key={index}>
-                                    <Text style={styles.headerLineText}>{report.fields.title}</Text>
-                                </TouchableOpacity>
-                            ) :
-                            <View style={size}><Text> </Text></View>
-                        }
+            return (
+                <View>
+                    <Spinner visible={visible} textContent={"Loading...."}/>
+                    <View style={{marginBottom: -20}} onLayout={this._onLayoutDidChange}>
+                        <Carousel
+                            autoplay
+                            style={size}
+                            delay={5000}>
+                            {headLine.length > 0 ? headLine.map((report, index) =>
+                                    <TouchableOpacity onPress={() => this.onMoreInfo(report.href)}
+                                                      style={[styles.headLineContainer, size]} key={index}>
+                                        <Text style={styles.headerLineText}>{report.fields.title}</Text>
+                                    </TouchableOpacity>
+                                ) :
+                                <View style={size}><Text> </Text></View>
+                            }
 
-                    </Carousel>
+                        </Carousel>
+                    </View>
+                    <ScrollView>
+                        <List>
+                            {list.map((item, index) => (
+                                <ListItem
+                                    key={index}
+                                    switchButton
+                                    avatar={<Avatar rounded source={item.avatar}/>}
+                                    title={item.title}
+                                    onPress={() => this.props.navigation.navigate(item.path)}
+                                />
+                            ))}
+                        </List>
+                    </ScrollView>
                 </View>
-                <ScrollView>
-                    <List>
-                        {list.map((item, index) => (
-                            <ListItem
-                                key={index}
-                                switchButton
-                                avatar={<Avatar rounded source={item.avatar}/>}
-                                title={item.title}
-                                onPress={() => this.props.navigation.navigate(item.path)}
-                            />
-                        ))}
-                    </List>
-                </ScrollView>
-            </View>
-        )
+            )
     }
 
     onMoreInfo(uri) {
@@ -100,4 +100,4 @@ class MainScreen extends Component {
     }
 }
 
-export default (MainScreen);
+export default (DashboardScreen);

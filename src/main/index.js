@@ -1,2 +1,2 @@
 'use strict';
-export {default as MainScreen} from "./screen/MainScreen";
+export {default as Main} from "./Main";

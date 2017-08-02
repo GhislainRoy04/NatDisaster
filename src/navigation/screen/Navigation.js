@@ -1,7 +1,8 @@
 'use strict';
 import React, {Component} from "react";
 import {StackNavigator} from "react-navigation";
-import {MainScreen} from "../../main";
+import {DashboardScreen} from "../../dashboard";
+import {LoginScreen} from "../../login";
 import {SettingsScreen, PushNotificationScreen} from "../../settings";
 import {DisasterScreen} from "../../disaster";
 
@@ -9,12 +10,21 @@ class Navigation extends Component {
     render() {
         const MainNavigation = StackNavigator({
             MainScreen: {
-                screen: MainScreen,
+                screen: DashboardScreen,
                 headerMode: "float",
                 navigationOptions: {
                     headerStyle: {
                         marginTop: 25
                     }
+                }
+            },
+            login:{
+              screen:  LoginScreen,
+                headerMode:"float",
+                navigationOptions:{
+                  headerStyle:{
+                      marginTop:25
+                  }
                 }
             },
             settings: {
