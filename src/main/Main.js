@@ -1,25 +1,22 @@
 'use strict';
-import React,{Component} from "react";
-import {AsyncStorage} from "react-native";
+import React, {Component} from "react";
+import {AsyncStorage, View} from "react-native";
 import {LoginScreen} from "../login";
 import {DashboardScreen} from "../dashboard";
 
-class Main extends Component{
-    constructor(props){
-        super(props);
-        let loggedIn;
-        AsyncStorage.getItem('fb_token').then((res)=>loggedIn=res);
-        this.state=({loggedIn});
-    }
-    render(){
-        let {loggedIn} = this.state;
+let Main=null;
 
-        if(loggedIn){
-            return <DashboardScreen/>
-        }else{
-            return <LoginScreen/>
-        }
-    }
-}
+AsyncStorage.getItem('fb_token').then(res =>{
+    let token = res;
+
+     Main = () => (
+        token.length > 0 ?
+            this.props.navigation.navigate('main')
+
+            :
+            this.props.navigation.navigate('login')
+
+    );
+});
 
 export default (Main);

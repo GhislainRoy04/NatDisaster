@@ -1,6 +1,6 @@
 'use strict';
 import React, {Component} from "react";
-import {ScrollView, View, TouchableOpacity, Text, Dimensions, Alert} from "react-native";
+import {ScrollView, View, TouchableOpacity, Text, Dimensions, Alert,AsyncStorage} from "react-native";
 import {List, ListItem, Avatar} from "react-native-elements";
 import Carousel from "react-native-looped-carousel";
 import Spinner from "react-native-loading-spinner-overlay";
@@ -23,9 +23,16 @@ class DashboardScreen extends Component {
 
     componentWillMount() {
         this.setState({visible: true});
+        AsyncStorage.getItem('fb_token').then((res)=>{
+            console.log(res);
+            if(!(res.length>0)){
+                this.props.navigation.navigation('login');
+            }
+        });
         Api.getHeadline().then((res) => {
             this.setState({headLine: res.data.data, visible: false});
         });
+
     }
 
     _onLayoutDidChange = (e) => {

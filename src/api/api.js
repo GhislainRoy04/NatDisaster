@@ -51,11 +51,11 @@ export  default ({
         }else {
             // Login In
             let {type,token} = await Facebook.logInWithReadPermissionsAsync(appID,{
-                permissions:['public_profile','publish_pages']
+                permissions:['public_profile']
             });
 
             if(type==='cancel'){
-                return -1;
+                return "";
             }
 
             await AsyncStorage.setItem('fb_token',token);

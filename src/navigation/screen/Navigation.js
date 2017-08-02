@@ -9,7 +9,7 @@ import {DisasterScreen} from "../../disaster";
 class Navigation extends Component {
     render() {
         const MainNavigation = StackNavigator({
-            MainScreen: {
+            dashboard: {
                 screen: DashboardScreen,
                 headerMode: "float",
                 navigationOptions: {

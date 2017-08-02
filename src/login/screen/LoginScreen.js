@@ -1,6 +1,6 @@
 'use strict';
 import React,{Component} from "react";
-import {View} from "react-native";
+import {View,Alert,AsyncStorage} from "react-native";
 import {Button,Text} from "react-native-elements";
 import {Api} from "../../api";
 import styles from "./LoginStyleSheet";
@@ -22,7 +22,14 @@ class LoginScreen extends Component{
     }
 
     onLoginPress(){
-        Api.facebookLogin();
+        Api.facebookLogin().then(res=>{
+            if(res.trim().length>0){
+                AsyncStorage.setItem('fb_token',res);
+                this.props.navigation.navigate("MainScreen");
+            }else{
+                Alert.alert("Login Failed","Login has been aborted or login failed.");
+            }
+        });
     }
 }
 
