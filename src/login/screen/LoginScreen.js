@@ -1,8 +1,7 @@
 'use strict';
 import React,{Component} from "react";
-import {View,Text} from "react-native";
-import {Button} from "react-native-elements";
-import Spinner from "react-native-loading-spinner-overlay";
+import {View} from "react-native";
+import {Button,Text} from "react-native-elements";
 import {Api} from "../../api";
 import styles from "./LoginStyleSheet";
 
@@ -14,10 +13,10 @@ class LoginScreen extends Component{
 
     render(){
         return(
-            <View>
+            <View style={styles.container}>
+                <Text h2>NatDisaster</Text>
                 <Button title="Login With Facebook" onPress={()=> this.onLoginPress()} />
-
-                <Text>Continue as guest</Text>
+                <Text style={styles.guest} >Continue as guest</Text>
             </View>
         )
     }
