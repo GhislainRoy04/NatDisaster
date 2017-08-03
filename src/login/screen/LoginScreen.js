@@ -12,7 +12,8 @@ class LoginScreen extends Component {
 
     constructor(props) {
         super(props);
-        this.onLoginPress = this.onLoginPress.bind(this);
+        this.onFacebookLogin = this.onFacebookLogin.bind(this);
+        this.onGuestLogin = this.onGuestLogin.bind(this);
     }
 
     componentWillMount() {
@@ -32,14 +33,14 @@ class LoginScreen extends Component {
                 </View>
                 <View style={styles.buttonContainer}>
                     <SocialIcon button type="facebook" title="Sign In With Facebook"
-                                onPress={() => this.onLoginPress()}/>
-                    <Button title="Continue as guest"/>
+                                onPress={() => this.onFacebookLogin()}/>
+                    <Button title="Continue as guest" onPress={()=>this.onGuestLogin()}/>
                 </View>
             </View>
         )
     }
 
-    onLoginPress() {
+    onFacebookLogin() {
         Api.facebookLogin().then(res => {
             if (res.trim().length > 0) {
                 AsyncStorage.setItem('fb_token', res);
@@ -47,6 +48,12 @@ class LoginScreen extends Component {
             } else {
                 Alert.alert("Login Failed", "Login has been aborted or login failed.");
             }
+        });
+    }
+
+    onGuestLogin(){
+        AsyncStorage.setItem('fb_token','guest').then(()=>{
+            this.props.navigation.navigate('dashboard');
         });
     }
 }
