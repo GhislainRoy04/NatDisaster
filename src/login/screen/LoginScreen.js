@@ -6,6 +6,7 @@ import {Api} from "../../api";
 import styles from "./LoginStyleSheet";
 
 class LoginScreen extends Component{
+
     constructor(props){
         super(props);
         this.onLoginPress=this.onLoginPress.bind(this);
@@ -25,7 +26,7 @@ class LoginScreen extends Component{
         Api.facebookLogin().then(res=>{
             if(res.trim().length>0){
                 AsyncStorage.setItem('fb_token',res);
-                this.props.navigation.navigate("MainScreen");
+                this.props.navigation.navigate("dashboard");
             }else{
                 Alert.alert("Login Failed","Login has been aborted or login failed.");
             }

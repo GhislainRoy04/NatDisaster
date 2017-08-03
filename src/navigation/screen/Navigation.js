@@ -18,13 +18,13 @@ class Navigation extends Component {
                     }
                 }
             },
-            login:{
-              screen:  LoginScreen,
-                headerMode:"float",
+            login: {
+                screen: LoginScreen,
+                navigationConfig:{
+                    headerMode:"none"
+                },
                 navigationOptions:{
-                  headerStyle:{
-                      marginTop:25
-                  }
+                    header:null
                 }
             },
             settings: {
@@ -183,8 +183,8 @@ class Navigation extends Component {
                     }
                 }
             },
-        },{
-            lazyLoad:true
+        }, {
+            lazyLoad: true
         });
 
         return (
