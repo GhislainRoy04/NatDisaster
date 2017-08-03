@@ -1,15 +1,19 @@
 'use strict';
 import React, {Component} from "react";
 import {StackNavigator} from "react-navigation";
-import {MainScreen} from "../../main";
+import {DashboardScreen} from "../../dashboard";
+import {LoginScreen} from "../../login";
 import {SettingsScreen, PushNotificationScreen} from "../../settings";
 import {DisasterScreen} from "../../disaster";
 
 class Navigation extends Component {
     render() {
         const MainNavigation = StackNavigator({
-            MainScreen: {
-                screen: MainScreen,
+            login: {
+                screen: LoginScreen,
+            },
+            dashboard: {
+                screen: DashboardScreen,
                 headerMode: "float",
                 navigationOptions: {
                     headerStyle: {
@@ -17,6 +21,7 @@ class Navigation extends Component {
                     }
                 }
             },
+
             settings: {
                 screen: SettingsScreen,
                 headerMode: "float",
@@ -173,6 +178,9 @@ class Navigation extends Component {
                     }
                 }
             },
+        }, {
+            lazyLoad: true,
+            headerMode:'screen'
         });
 
         return (
