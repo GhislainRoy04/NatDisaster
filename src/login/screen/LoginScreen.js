@@ -6,10 +6,20 @@ import {Api} from "../../api";
 import styles from "./LoginStyleSheet";
 
 class LoginScreen extends Component{
-
+    static navigationOptions = ({navigation}) => ({
+        header:null,
+    });
     constructor(props){
         super(props);
         this.onLoginPress=this.onLoginPress.bind(this);
+    }
+
+    componentWillMount(){
+        AsyncStorage.getItem('fb_token').then(res=>{
+            if(res){
+                this.props.navigation.navigate('dashboard');
+            }
+        })
     }
 
     render(){

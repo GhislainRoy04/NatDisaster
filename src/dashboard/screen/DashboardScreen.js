@@ -8,9 +8,12 @@ import {Api} from "../../api";
 import styles from "./DashboardStyleSheet";
 import * as img from "../images";
 
+let loggedIn;
+
 class DashboardScreen extends Component {
     static navigationOptions = ({navigation}) => ({
         title: "Dashboard",
+        headerLeft:null,
         headerRight: <Button title="Settings" raised backgroundColor="blue"
                            color="white" onPress={() => navigation.navigate('settings')}/>
     });
@@ -24,9 +27,11 @@ class DashboardScreen extends Component {
     componentWillMount() {
         AsyncStorage.getItem('fb_token').then((res)=>{
             if(!res){
+                loggedIn=false;
                 this.props.navigation.navigate('login');
             }else{
                 this.setState({visible: true});
+                loggedIn = true;
                 Api.getHeadline().then((res) => {
                     this.setState({headLine: res.data.data, visible: false});
                 });
@@ -60,6 +65,7 @@ class DashboardScreen extends Component {
         let {headLine, size, visible} = this.state;
             return (
                 <View>
+
                     <Spinner visible={visible} textContent={"Loading...."}/>
                     <View style={{marginBottom: -20}} onLayout={this._onLayoutDidChange}>
                         <Carousel

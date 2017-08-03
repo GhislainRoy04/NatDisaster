@@ -9,6 +9,9 @@ import {DisasterScreen} from "../../disaster";
 class Navigation extends Component {
     render() {
         const MainNavigation = StackNavigator({
+            login: {
+                screen: LoginScreen,
+            },
             dashboard: {
                 screen: DashboardScreen,
                 headerMode: "float",
@@ -18,15 +21,7 @@ class Navigation extends Component {
                     }
                 }
             },
-            login: {
-                screen: LoginScreen,
-                navigationConfig:{
-                    headerMode:"none"
-                },
-                navigationOptions:{
-                    header:null
-                }
-            },
+
             settings: {
                 screen: SettingsScreen,
                 headerMode: "float",
@@ -184,7 +179,8 @@ class Navigation extends Component {
                 }
             },
         }, {
-            lazyLoad: true
+            lazyLoad: true,
+            headerMode:'screen'
         });
 
         return (

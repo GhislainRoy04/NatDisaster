@@ -37,7 +37,9 @@ class SettingsScreen extends Component{
     }
 
     onLogOut(){
-        AsyncStorage.removeItem('fb_token').then((res)=>console.log(res));
+        AsyncStorage.removeItem('fb_token').then(()=>{
+            this.props.navigation.navigate('login');
+        });
     }
 }
 
