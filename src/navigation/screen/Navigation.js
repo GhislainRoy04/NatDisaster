@@ -183,6 +183,8 @@ class Navigation extends Component {
                     }
                 }
             },
+        },{
+            lazyLoad:true
         });
 
         return (

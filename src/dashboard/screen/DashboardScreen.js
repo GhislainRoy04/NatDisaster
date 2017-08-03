@@ -22,17 +22,16 @@ class DashboardScreen extends Component {
     }
 
     componentWillMount() {
-        this.setState({visible: true});
         AsyncStorage.getItem('fb_token').then((res)=>{
-            console.log(res);
-            if(!(res.length>0)){
-                this.props.navigation.navigation('login');
+            if(!res){
+                this.props.navigation.navigate('login');
+            }else{
+                this.setState({visible: true});
+                Api.getHeadline().then((res) => {
+                    this.setState({headLine: res.data.data, visible: false});
+                });
             }
         });
-        Api.getHeadline().then((res) => {
-            this.setState({headLine: res.data.data, visible: false});
-        });
-
     }
 
     _onLayoutDidChange = (e) => {
