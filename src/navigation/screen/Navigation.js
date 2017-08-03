@@ -4,7 +4,7 @@ import {StackNavigator} from "react-navigation";
 import {DashboardScreen} from "../../dashboard";
 import {LoginScreen} from "../../login";
 import {SettingsScreen, PushNotificationScreen} from "../../settings";
-import {DisasterScreen} from "../../disaster";
+import {DisasterScreen,MainDisasterScreen} from "../../disaster";
 
 class Navigation extends Component {
     render() {
@@ -21,7 +21,15 @@ class Navigation extends Component {
                     }
                 }
             },
-
+            disaster:{
+                screen:MainDisasterScreen,
+                headerMode: "float",
+                navigationOptions: {
+                    headerStyle: {
+                        marginTop: 25
+                    }
+                }
+            },
             settings: {
                 screen: SettingsScreen,
                 headerMode: "float",
