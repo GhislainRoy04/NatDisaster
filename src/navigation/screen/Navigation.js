@@ -21,7 +21,6 @@ class Navigation extends Component {
                     }
                 }
             },
-
             settings: {
                 screen: SettingsScreen,
                 headerMode: "float",
