@@ -1,7 +1,7 @@
 'use strict';
 import React, {Component} from "react";
 import {ScrollView, View, TouchableOpacity, Text, Dimensions, Alert,AsyncStorage} from "react-native";
-import {List, ListItem, Avatar} from "react-native-elements";
+import {List, ListItem, Avatar,Button} from "react-native-elements";
 import Carousel from "react-native-looped-carousel";
 import Spinner from "react-native-loading-spinner-overlay";
 import {Api} from "../../api";
@@ -10,9 +10,9 @@ import * as img from "../images";
 
 class DashboardScreen extends Component {
     static navigationOptions = ({navigation}) => ({
-        title: "Disaster",
-        //headerRight: <Button title="Settings" raised backgroundColor="blue"
-        //                   color="white" onPress={() => navigation.navigate('settings')}/>
+        title: "Dashboard",
+        headerRight: <Button title="Settings" raised backgroundColor="blue"
+                           color="white" onPress={() => navigation.navigate('settings')}/>
     });
 
     constructor(props) {
