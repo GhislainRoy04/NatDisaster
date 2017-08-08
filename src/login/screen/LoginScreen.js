@@ -19,9 +19,6 @@ class LoginScreen extends Component {
 
     componentWillMount() {
         AsyncStorage.getItem('fb_token').then(res => {
-            if (res) {
-                this.props.navigation.navigate('default');
-            }
         })
     }
 
