@@ -1,9 +1,7 @@
 'use strict';
 import React, {Component} from "react";
-import {ScrollView, View, TouchableOpacity, Text, Dimensions, Alert, AsyncStorage} from "react-native";
-import {List, ListItem, Avatar, Button, Card} from "react-native-elements";
-import Carousel from "react-native-looped-carousel";
-import Spinner from "react-native-loading-spinner-overlay";
+import {View, Text, Dimensions, Alert, AsyncStorage} from "react-native";
+import { Button, Card} from "react-native-elements";
 import {Api} from "../../api";
 import styles from "./DashboardStyleSheet";
 
@@ -35,13 +33,8 @@ class DashboardScreen extends Component {
         });
     }
 
-    _onLayoutDidChange = (e) => {
-        const layout = e.nativeEvent.layout;
-        this.setState({size: {...this.state.size, width: layout.width}});
-    };
-
     render() {
-        let {headLine, size, visible} = this.state;
+        let {headLine} = this.state;
         return (
             <View style={styles.headLineView}>
                 <Card title="Latest" containerStyle={styles.firstNews}>
