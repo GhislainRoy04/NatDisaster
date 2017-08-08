@@ -66,13 +66,31 @@ class DashboardScreen extends Component {
                     </Carousel>
                 </View>
 
-                <ScrollView>
-                    <List>
+                <ScrollView style={styles.dashboardOption}>
+                    <List wrapperStyle={styles.item}>
                         <ListItem
                             switchButton
                             avatar={<Avatar rounded/>}
                             title="Disasters"
                             onPress={() => this.props.navigation.navigate('disaster')}
+                        />
+                        <ListItem
+                            switchButton
+                            avatar={<Avatar rounded/>}
+                            title="Jobs"
+                            onPress={()=>{}}
+                        />
+                        <ListItem
+                            switchButton
+                            avatar={<Avatar rounded/>}
+                            title="Training"
+                            onPress={()=>{}}
+                        />
+                        <ListItem
+                            switchButton
+                            avatar={<Avatar rounded/>}
+                            title="Countries"
+                            onPress={()=>{}}
                         />
                     </List>
                 </ScrollView>

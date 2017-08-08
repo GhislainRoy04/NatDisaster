@@ -10,6 +10,7 @@ class LoginScreen extends Component {
         header: null,
     });
 
+
     constructor(props) {
         super(props);
         this.onFacebookLogin = this.onFacebookLogin.bind(this);
@@ -19,7 +20,7 @@ class LoginScreen extends Component {
     componentWillMount() {
         AsyncStorage.getItem('fb_token').then(res => {
             if (res) {
-                this.props.navigation.navigate('dashboard');
+                this.props.navigation.navigate('default');
             }
         })
     }

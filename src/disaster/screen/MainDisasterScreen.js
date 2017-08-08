@@ -1,21 +1,19 @@
 'use strict';
 import React, {Component} from "react";
 import {ScrollView, View,Dimensions} from "react-native";
-import {List, ListItem, Avatar,Button} from "react-native-elements";
+import {List, ListItem, Avatar} from "react-native-elements";
 import * as img from "../images";
 
 class DashboardScreen extends Component {
     static navigationOptions = ({navigation}) => ({
         title: "Disasters",
-        headerRight: <Button title="Settings" raised backgroundColor="blue"
-                             color="white" onPress={() => navigation.navigate('settings')}/>
+        headerLeft: null,
     });
 
     constructor(props) {
         super(props);
         this.state = ({headLine: [], size: {width: Dimensions.get('window').width, height: 50}, visible: false});
     }
-
 
     render() {
         const list = [

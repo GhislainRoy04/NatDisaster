@@ -11,5 +11,11 @@ export default StyleSheet.create({
         textAlign:'center',
         fontSize:14,
         fontWeight:'bold'
+    },
+    dashboardOption:{
+        marginTop:20
+    },
+    item:{
+        height:500,
     }
 });
