@@ -4,7 +4,7 @@ import {StackNavigator, DrawerNavigator, DrawerItems} from "react-navigation";
 import {ScrollView,AsyncStorage,Platform} from "react-native";
 import {DashboardScreen} from "../../dashboard";
 import {LoginScreen} from "../../login";
-import {SettingsScreen, PushNotificationScreen} from "../../settings";
+import {Settings} from "../../settings";
 import {DisasterScreen, MainDisasterScreen} from "../../disaster";
 
 class Navigation extends Component {
@@ -173,27 +173,6 @@ class Navigation extends Component {
             },
             };
 
-        const Settings = {
-            default:{
-                screen : SettingsScreen,
-                headerMode: 'float',
-                navigationOptions:{
-                    headerStyle:{
-                        marginTop:Platform.OS==="android"?25:0
-                    }
-                }
-            },
-            pushnotification: {
-                screen: PushNotificationScreen,
-                headerMode: "float",
-                navigationOptions: {
-                    headerStyle: {
-                        marginTop: Platform.OS==="android"?25:0
-                    }
-                }
-            }
-        };
-
         const DrawerRoutes = DrawerNavigator({
             dashboard: {
                 name: 'Dashboard',
@@ -224,14 +203,17 @@ class Navigation extends Component {
                         marginTop: 25
                     }
                 }
-            },
+            }
         }, {
             lazyLoad: true,
             headerMode: 'screen',
             contentOptions:{
                 style:{
-                    marginTop:25
-                }
+                    marginTop:25,
+                    backgroundColor:'#c0c0c0',
+                },
+                activeBackgroundColor:"#848484",
+                activeTintColor:"#fff"
             },
             contentComponent: props =>
                 <ScrollView>
