@@ -1,9 +1,7 @@
 'use strict';
 import React, {Component} from "react";
-import {ScrollView, View, TouchableOpacity, Text, Dimensions, Alert, AsyncStorage} from "react-native";
-import {List, ListItem, Avatar, Button} from "react-native-elements";
-import Carousel from "react-native-looped-carousel";
-import Spinner from "react-native-loading-spinner-overlay";
+import {View, Text, Dimensions, Alert, AsyncStorage} from "react-native";
+import { Button, Card} from "react-native-elements";
 import {Api} from "../../api";
 import styles from "./DashboardStyleSheet";
 
@@ -12,9 +10,6 @@ let loggedIn;
 class DashboardScreen extends Component {
     static navigationOptions = ({navigation}) => ({
         title: "Dashboard",
-        headerLeft: null,
-        headerRight: <Button title="Settings" raised backgroundColor="blue"
-                             color="white" onPress={() => navigation.navigate('settings')}/>
     });
 
     constructor(props) {
@@ -38,46 +33,37 @@ class DashboardScreen extends Component {
         });
     }
 
-    _onLayoutDidChange = (e) => {
-        const layout = e.nativeEvent.layout;
-        this.setState({size: {...this.state.size, width: layout.width}});
-    };
-
     render() {
-        let {headLine, size, visible} = this.state;
+        let {headLine} = this.state;
         return (
-            <View>
+            <View style={styles.headLineView}>
+                <Card title="Latest" containerStyle={styles.firstNews}>
+                    <Text style={styles.reportTitle}>{headLine.length > 0 && headLine[0].fields.title}</Text>
+                    <Button title="View more" onPress={() => this.onMoreInfo(headLine[0].href)} />
+                </Card>
+                <View style={styles.newsRow}>
+                    <Card containerStyle={styles.news} onPress={() => this.onMoreInfo(headLine[1].href)}>
+                        <Text style={styles.reportTitle}>{headLine.length > 0 && headLine[1].fields.title}</Text>
+                    </Card>
 
-                <Spinner visible={visible} textContent={"Loading...."}/>
-                <View style={{marginBottom: -20}} onLayout={this._onLayoutDidChange}>
-                    <Carousel
-                        autoplay
-                        style={size}
-                        delay={5000}>
-                        {headLine.length > 0 ? headLine.map((report, index) =>
-                                <TouchableOpacity onPress={() => this.onMoreInfo(report.href)}
-                                                  style={[styles.headLineContainer, size]} key={index}>
-                                    <Text style={styles.headerLineText}>{report.fields.title}</Text>
-                                </TouchableOpacity>
-                            ) :
-                            <View style={size}><Text> </Text></View>
-                        }
+                    <Card containerStyle={styles.news} onPress={() => this.onMoreInfo(headLine[2].href)}>
+                        <Text style={styles.reportTitle}>{headLine.length > 0 && headLine[2].fields.title}</Text>
+                    </Card>
 
-                    </Carousel>
                 </View>
 
-                <ScrollView>
-                    <List>
-                        <ListItem
-                            switchButton
-                            avatar={<Avatar rounded/>}
-                            title="Disasters"
-                            onPress={() => this.props.navigation.navigate('disaster')}
-                        />
-                    </List>
-                </ScrollView>
+                <View style={styles.newsRow}>
+                    <Card containerStyle={styles.news} onPress={() => this.onMoreInfo(headLine[3].href)}>
+                        <Text style={styles.reportTitle}>{headLine.length > 0 && headLine[3].fields.title}</Text>
+                    </Card>
+
+                    <Card containerStyle={styles.news} onPress={() => this.onMoreInfo(headLine[4].href)}>
+                        <Text style={styles.reportTitle}>{headLine.length > 0 && headLine[4].fields.title}</Text>
+                    </Card>
+                </View>
             </View>
         )
+
     }
 
     onMoreInfo(uri) {

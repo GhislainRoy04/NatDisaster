@@ -5,6 +5,10 @@ import {Button} from "react-native-elements";
 import styles from "./SettingStyleSheet";
 
 class SettingsScreen extends Component{
+    static navigationOptions=()=>({
+        title:"Settings"
+    });
+
     constructor(props){
         super(props);
         this.onLogOut=this.onLogOut.bind(this);

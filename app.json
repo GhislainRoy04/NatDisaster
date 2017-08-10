@@ -7,6 +7,9 @@
     "slug":"nat-disaster",
     "android":{
       "package":"com.ghislainroy.natdisaster"
+    },
+    "ios":{
+      "bundleIdentifier":"com.ghislainroy.natdisaster"
     }
   }
 }
