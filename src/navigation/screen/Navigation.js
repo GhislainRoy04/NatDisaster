@@ -1,7 +1,7 @@
 'use strict';
 import React, {Component} from "react";
 import {StackNavigator, DrawerNavigator, DrawerItems} from "react-navigation";
-import {ScrollView,AsyncStorage} from "react-native";
+import {ScrollView,AsyncStorage,Platform} from "react-native";
 import {DashboardScreen} from "../../dashboard";
 import {LoginScreen} from "../../login";
 import {SettingsScreen, PushNotificationScreen} from "../../settings";
@@ -27,7 +27,7 @@ class Navigation extends Component {
                     headerMode: "float",
                     navigationOptions: {
                         headerStyle: {
-                            marginTop: 25
+                            marginTop: Platform.OS==="android"?25:0
                         }
                     }
                 },
@@ -37,7 +37,7 @@ class Navigation extends Component {
                     navigationOptions: {
                         title: "Earthquake",
                         headerStyle: {
-                            marginTop: 25
+                            marginTop: Platform.OS==="android"?25:0
                         }
                     }
                 },
@@ -46,7 +46,7 @@ class Navigation extends Component {
                     navigationOptions: {
                         title: "Volcano",
                         headerStyle: {
-                            marginTop: 25
+                            marginTop: Platform.OS==="android"?25:0
                         }
                     }
                 },
@@ -55,7 +55,7 @@ class Navigation extends Component {
                     navigationOptions: {
                         title: "Avalanche",
                         headerStyle: {
-                            marginTop: 25
+                            marginTop: Platform.OS==="android"?25:0
                         }
                     }
                 },
@@ -64,7 +64,7 @@ class Navigation extends Component {
                     navigationOptions: {
                         title: "Cold Wave",
                         headerStyle: {
-                            marginTop: 25
+                            marginTop: Platform.OS==="android"?25:0
                         }
                     }
                 },
@@ -73,7 +73,7 @@ class Navigation extends Component {
                     navigationOptions: {
                         title: "Cyclone",
                         headerStyle: {
-                            marginTop: 25
+                            marginTop: Platform.OS==="android"?25:0
                         }
                     }
                 },
@@ -82,7 +82,7 @@ class Navigation extends Component {
                     navigationOptions: {
                         title: "Drought",
                         headerStyle: {
-                            marginTop: 25
+                            marginTop: Platform.OS==="android"?25:0
                         }
                     }
                 },
@@ -92,7 +92,7 @@ class Navigation extends Component {
                         title: "Viral Outbreak",
                         headerStyle: {
 
-                            marginTop: 25
+                            marginTop: Platform.OS==="android"?25:0
                         }
                     }
                 },
@@ -101,7 +101,7 @@ class Navigation extends Component {
                     navigationOptions: {
                         title: "Fire / Wild Fire",
                         headerStyle: {
-                            marginTop: 25
+                            marginTop: Platform.OS==="android"?25:0
                         }
                     }
                 },
@@ -110,8 +110,7 @@ class Navigation extends Component {
                     navigationOptions: {
                         title: "Flash Flood",
                         headerStyle: {
-
-                            marginTop: 25
+                            marginTop: Platform.OS==="android"?25:0
                         }
                     }
                 },
@@ -120,7 +119,7 @@ class Navigation extends Component {
                     navigationOptions: {
                         title: "Flood",
                         headerStyle: {
-                            marginTop: 25
+                            marginTop: Platform.OS==="android"?25:0
                         }
                     }
                 },
@@ -180,7 +179,7 @@ class Navigation extends Component {
                 headerMode: 'float',
                 navigationOptions:{
                     headerStyle:{
-                        marginTop:25
+                        marginTop:Platform.OS==="android"?25:0
                     }
                 }
             },
@@ -189,7 +188,7 @@ class Navigation extends Component {
                 headerMode: "float",
                 navigationOptions: {
                     headerStyle: {
-                        marginTop: 25
+                        marginTop: Platform.OS==="android"?25:0
                     }
                 }
             }
@@ -225,13 +224,12 @@ class Navigation extends Component {
                         marginTop: 25
                     }
                 }
-            }
-           ,
+            },
         }, {
             lazyLoad: true,
             headerMode: 'screen',
-            navigationOptions:{
-                headerStyle:{
+            contentOptions:{
+                style:{
                     marginTop:25
                 }
             },
