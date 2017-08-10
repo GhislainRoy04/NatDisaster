@@ -1,7 +1,7 @@
 'use strict';
 import React, {Component} from "react";
 import {StackNavigator, DrawerNavigator, DrawerItems} from "react-navigation";
-import {ScrollView,AsyncStorage} from "react-native";
+import {ScrollView,AsyncStorage,Dimensions} from "react-native";
 import {DashboardScreen} from "../../dashboard";
 import {LoginScreen} from "../../login";
 import {Settings} from "../../settings";
@@ -63,7 +63,7 @@ class Navigation extends Component {
                 activeTintColor:"#fff"
             },
             contentComponent: props =>
-                <ScrollView>
+                <ScrollView contentContainerStyle={{backgroundColor:"#c0c0c0",height:Dimensions.get('window').height}}>
                     <DrawerItems {...props} />
                 </ScrollView>
         });
