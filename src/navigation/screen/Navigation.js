@@ -22,30 +22,30 @@ class Navigation extends Component {
         let {token}= this.state;
         const DrawerRoutes = DrawerNavigator({
             dashboard: {
-                name: 'Dashboard',
                 screen: DashboardScreen,
                 headerMode: "float",
                 navigationOptions: {
+                    drawerLabel:"Dashboard",
                     headerStyle: {
                         marginTop: 25
                     }
                 }
             },
             disaster: {
-                name: 'Disasters',
                 screen: StackNavigator(Stack, {initialRouteName: 'default'}),
                 headerMode: "float",
                 navigationOptions: {
+                    drawerLabel:"Disasters",
                     headerStyle: {
                         marginTop: 25
                     }
                 }
             },
             settings: {
-                name:'Settings',
                 screen: StackNavigator(Settings,{initialRouteName:'default'}),
                 headerMode: "float",
                 navigationOptions: {
+                    drawerLabel:"Settings",
                     headerStyle: {
                         marginTop: 25
                     }
