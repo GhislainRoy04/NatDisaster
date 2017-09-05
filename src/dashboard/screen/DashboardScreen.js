@@ -1,7 +1,7 @@
 'use strict';
 import React, {Component} from "react";
-import {View, Text, Dimensions, Alert, AsyncStorage} from "react-native";
-import { Button, Card} from "react-native-elements";
+import {View, Text, Dimensions, Alert, AsyncStorage, ScrollView} from "react-native";
+import {Button, Card} from "react-native-elements";
 import {Api} from "../../api";
 import styles from "./DashboardStyleSheet";
 
@@ -37,9 +37,13 @@ class DashboardScreen extends Component {
         let {headLine} = this.state;
         return (
             <View style={styles.headLineView}>
-                <Card title={headLine.length>0 ? headLine[0].fields.title : "Latest"} containerStyle={styles.firstNews}>
-                    <Text style={styles.reportTitle}>{headLine.length > 0 && headLine[0].fields.body}</Text>
-                    <Button title="View more" onPress={() => this.onMoreInfo(headLine[0].href)} />
+                <Card title={headLine.length > 0 ? headLine[0].fields.title : "Latest"}
+                      containerStyle={styles.firstNews}>
+                    <ScrollView style={styles.scrollViewText}>
+                        <Text style={styles.reportTitle}>{headLine.length > 0 && headLine[0].fields.body}</Text>
+                    </ScrollView>
+                    <Button buttonStyle={{marginBottom: 0}} title="View more"
+                            onPress={() => this.onMoreInfo(headLine[0].href)}/>
                 </Card>
                 <View style={styles.newsRow}>
                     <Card containerStyle={styles.news} onPress={() => this.onMoreInfo(headLine[1].href)}>
@@ -75,6 +79,7 @@ class DashboardScreen extends Component {
             this.setState({visible: false});
             Alert.alert(moreInfo.fields.title, moreInfo.fields.body);
         })
+
     }
 }
 
