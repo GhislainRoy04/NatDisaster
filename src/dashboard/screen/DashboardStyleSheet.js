@@ -37,12 +37,12 @@ export default StyleSheet.create({
         width: Dimensions.get('window').width / 2 - 30
     },
     scrollViewText: {
-        height: Dimensions.get('window').height / 2 - 140,
+        height: Dimensions.get('window').height / 2 - 160,
         marginBottom: 6
     },
-    viewMoreButton:{
-        marginBottom:0,
-        backgroundColor:'#3ec4ff',
-        borderRadius:25,
+    viewMoreButton: {
+        marginBottom: 0,
+        backgroundColor: '#3ec4ff',
+        borderRadius: 25,
     }
 });
