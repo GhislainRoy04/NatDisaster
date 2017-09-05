@@ -1,4 +1,6 @@
+'use strict';
 import {StyleSheet,Platform} from "react-native";
+import AppStyles from "../../common/styling";
 
 export default StyleSheet.create({
     container:{
@@ -16,6 +18,8 @@ export default StyleSheet.create({
         flexDirection:'column',
     },
     button:{
-        marginBottom:10
+        marginBottom:10,
+        backgroundColor:AppStyles.defaultButton.backgroundColor,
+        borderRadius:AppStyles.defaultButton.borderRadius
     }
 });
