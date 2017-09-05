@@ -42,7 +42,7 @@ class DashboardScreen extends Component {
                     <ScrollView style={styles.scrollViewText}>
                         <Text style={styles.reportTitle}>{headLine.length > 0 && headLine[0].fields.body}</Text>
                     </ScrollView>
-                    <Button buttonStyle={{marginBottom: 0}} title="View more"
+                    <Button icon={{name: 'expand-more'}} buttonStyle={styles.viewMoreButton} title="View more"
                             onPress={() => this.onMoreInfo(headLine[0].href)}/>
                 </Card>
                 <View style={styles.newsRow}>
