@@ -6,14 +6,17 @@ let AppStyles = {
         borderRadius: 25,
     },
     statusType:{
-        alert:{
-            backgroundColor:'#ff0e12'
-        },
         current:{
-            backgroundColor:'#fff523'
+            color:'#ff0e12',
+            fontWeight:'bold'
+        },
+        alert:{
+            color:'#ffcc68',
+            fontWeight:'bold'
         },
         past:{
-            backgroundColor:'#2fc7ff'
+            color:'#2fc7ff',
+            fontWeight:'bold'
         }
     }
 };
