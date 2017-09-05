@@ -37,8 +37,8 @@ class DashboardScreen extends Component {
         let {headLine} = this.state;
         return (
             <View style={styles.headLineView}>
-                <Card title="Latest" containerStyle={styles.firstNews}>
-                    <Text style={styles.reportTitle}>{headLine.length > 0 && headLine[0].fields.title}</Text>
+                <Card title={headLine.length>0 ? headLine[0].fields.title : "Latest"} containerStyle={styles.firstNews}>
+                    <Text style={styles.reportTitle}>{headLine.length > 0 && headLine[0].fields.body}</Text>
                     <Button title="View more" onPress={() => this.onMoreInfo(headLine[0].href)} />
                 </Card>
                 <View style={styles.newsRow}>

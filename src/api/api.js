@@ -5,8 +5,8 @@ import {Facebook} from "expo";
 
 const appID = "1216068755171883";
 const reportURL = "https://api.reliefweb.int/v1/reports?appname=natdisaster&limit=50&preset=latest";
-const disasterURL = "https://api.reliefweb.int/v1/disasters?appname=natdisaster&limit=50";
-const latestURL = "https://api.reliefweb.int/v1/reports?appname=natdisaster&limit=5&preset=latest";
+const disasterURL = "https://api.reliefweb.int/v1/disasters?appname=natdisaster&fields[include][]=country&fields[include][]=status&limit=50";
+const latestURL = "https://api.reliefweb.int/v1/reports?appname=natdisaster&limit=5&preset=latest&profile=full";
 
 export  default ({
     getDisasterByType: function (type) {
