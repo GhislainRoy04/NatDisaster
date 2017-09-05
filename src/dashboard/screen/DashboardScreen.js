@@ -37,7 +37,7 @@ class DashboardScreen extends Component {
         let {headLine} = this.state;
         return (
             <View style={styles.headLineView}>
-                <Card title={headLine.length > 0 ? headLine[0].fields.title : "Latest"}
+                <Card title={headLine.length > 0 ? this.titleFixer(headLine[0].fields.title) : "Latest"}
                       containerStyle={styles.firstNews}>
                     <ScrollView style={styles.scrollViewText}>
                         <Text style={styles.reportTitle}>{headLine.length > 0 && headLine[0].fields.body}</Text>
@@ -47,22 +47,22 @@ class DashboardScreen extends Component {
                 </Card>
                 <View style={styles.newsRow}>
                     <Card containerStyle={styles.news} onPress={() => this.onMoreInfo(headLine[1].href)}>
-                        <Text style={styles.reportTitle}>{headLine.length > 0 && headLine[1].fields.title}</Text>
+                        <Text style={styles.reportTitle}>{headLine.length > 0 && this.titleFixer(headLine[1].fields.title)}</Text>
                     </Card>
 
                     <Card containerStyle={styles.news} onPress={() => this.onMoreInfo(headLine[2].href)}>
-                        <Text style={styles.reportTitle}>{headLine.length > 0 && headLine[2].fields.title}</Text>
+                        <Text style={styles.reportTitle}>{headLine.length > 0 && this.titleFixer(headLine[2].fields.title)}</Text>
                     </Card>
 
                 </View>
 
                 <View style={styles.newsRow}>
                     <Card containerStyle={styles.news} onPress={() => this.onMoreInfo(headLine[3].href)}>
-                        <Text style={styles.reportTitle}>{headLine.length > 0 && headLine[3].fields.title}</Text>
+                        <Text style={styles.reportTitle}>{headLine.length > 0 && this.titleFixer(headLine[3].fields.title)}</Text>
                     </Card>
 
                     <Card containerStyle={styles.news} onPress={() => this.onMoreInfo(headLine[4].href)}>
-                        <Text style={styles.reportTitle}>{headLine.length > 0 && headLine[4].fields.title}</Text>
+                        <Text style={styles.reportTitle}>{headLine.length > 0 && this.titleFixer(headLine[4].fields.title)}</Text>
                     </Card>
                 </View>
             </View>
@@ -80,6 +80,13 @@ class DashboardScreen extends Component {
             Alert.alert(moreInfo.fields.title, moreInfo.fields.body);
         })
 
+    }
+
+    titleFixer(title){
+        if(title.length>100){
+            return title.substring(0,100) + '...';
+        }
+        return title
     }
 }
 

@@ -1,5 +1,6 @@
 'use strict';
 import {StyleSheet} from "react-native";
+import AppStyles from "../../common/styling";
 
 export default StyleSheet.create({
     reportContainer:{
@@ -16,8 +17,17 @@ export default StyleSheet.create({
     moreInfoButton:{
         marginLeft:0,
         marginRight:0,
-        borderRadius:25,
+        borderRadius:AppStyles.defaultButton.borderRadius,
         marginBottom:10,
-        marginTop:10
+        marginTop:10,
+        backgroundColor: AppStyles.defaultButton.backgroundColor
+    },
+    scrollViewContentContainer:{
+        marginTop: 10,
+        flexDirection: 'column',
+        justifyContent: 'space-between'
+    },
+    scrollViewContainer:{
+        marginBottom:80
     }
 });

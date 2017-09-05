@@ -1,5 +1,6 @@
 'use strict';
 import {StyleSheet, Dimensions, Platform} from "react-native";
+import AppStyles from "../../common/styling";
 
 export default StyleSheet.create({
     headLineContainer: {
@@ -38,11 +39,11 @@ export default StyleSheet.create({
     },
     scrollViewText: {
         height: Dimensions.get('window').height / 2 - 160,
-        marginBottom: 6
+        marginBottom: 10
     },
     viewMoreButton: {
         marginBottom: 0,
-        backgroundColor: '#3ec4ff',
-        borderRadius: 25,
+        backgroundColor: AppStyles.defaultButton.backgroundColor,
+        borderRadius: AppStyles.defaultButton.borderRadius,
     }
 });
