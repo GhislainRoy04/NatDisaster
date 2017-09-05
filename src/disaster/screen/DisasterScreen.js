@@ -5,6 +5,7 @@ import {Button, ButtonGroup, Card} from "react-native-elements";
 import Spinner from "react-native-loading-spinner-overlay";
 import {Api} from "../../api";
 import styles from "./DisasterCommonStyleSheet";
+import AppStyles from "../../common/styling";
 
 class EarthquakeScreen extends Component {
 
@@ -24,12 +25,12 @@ class EarthquakeScreen extends Component {
     }
 
     componentWillMount() {
-        this.onReportPress();
+        this.onSummaryPress();
     }
 
     render() {
         let {selectedIndex, summary, reports, visible} = this.state;
-        const buttons = ['Reports', 'Summary'];
+        const buttons = ['Summary','Reports'];
         return (
             <View>
                 <Spinner visible={visible} textContent={"Loading...."}/>
@@ -53,7 +54,8 @@ class EarthquakeScreen extends Component {
                     {summary.map((report, index) =>
 
                         <Card key={index}>
-                            <Text style={styles.reportTitle}>{report.fields.name}</Text>
+                            <Text style={styles.reportTitle}>{report.fields.name} </Text>
+                            <Text>Status : <Text style={this.getAlertLevel(report.fields.status)}>{report.fields.status}</Text> </Text>
                             <Button icon={{name: 'expand-more'}} buttonStyle={styles.moreInfoButton} title="More info"
                                     onPress={() => this.onMoreInfo(report.href)}/>
                         </Card>
@@ -61,6 +63,18 @@ class EarthquakeScreen extends Component {
                 </ScrollView>
             </View>
         )
+    }
+
+    getAlertLevel(status){
+        if(status === 'alert'){
+            return AppStyles.statusType.alert;
+        }
+
+        if(status==='current') {
+            return AppStyles.statusType.current;
+        }
+
+        return AppStyles.statusType.past;
     }
 
     onReportPress() {
@@ -84,7 +98,7 @@ class EarthquakeScreen extends Component {
         }).then(() => {
             let {moreInfo, selectedIndex} = this.state;
             this.setState({visible: false});
-            if (selectedIndex === 0) {
+            if (selectedIndex === 1) {
                 Alert.alert(moreInfo.fields.title, moreInfo.fields.body);
             } else {
                 Alert.alert(moreInfo.fields.name, moreInfo.fields.description);
@@ -96,13 +110,13 @@ class EarthquakeScreen extends Component {
         this.setState({selectedIndex});
 
         if (selectedIndex === 0) {
-            this.setState({summary: [], moreInfo: []});
-            this.onReportPress();
+            this.setState({reports: [], moreInfo: []});
+            this.onSummaryPress();
         }
 
         if (selectedIndex === 1) {
-            this.setState({reports: [], moreInfo: []});
-            this.onSummaryPress();
+            this.setState({summary: [], moreInfo: []});
+            this.onReportPress();
         }
     }
 }

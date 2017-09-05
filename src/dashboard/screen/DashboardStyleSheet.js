@@ -38,7 +38,7 @@ export default StyleSheet.create({
         width: Dimensions.get('window').width / 2 - 30
     },
     scrollViewText: {
-        height: Dimensions.get('window').height / 2 - 160,
+        height: Dimensions.get('window').height / 2 - 140,
         marginBottom: 10
     },
     viewMoreButton: {
