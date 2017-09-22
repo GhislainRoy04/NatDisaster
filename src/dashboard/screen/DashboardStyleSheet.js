@@ -14,14 +14,14 @@ export default StyleSheet.create({
         fontWeight: 'bold'
     },
     dashboardOption: {
-        marginTop: 20
+        marginTop: 5
     },
     item: {
         height: 500,
     },
     firstNews: {
         width: Dimensions.get('window').width - 30,
-        height: Dimensions.get('window').height / 2
+        height: Dimensions.get('window').height / 2-50
     },
     newsRow: {
         width: Dimensions.get('window').width - 30,
@@ -32,13 +32,13 @@ export default StyleSheet.create({
     headLineView: {
         display: 'flex',
         flexDirection: 'column',
-        marginTop: Platform.OS === 'android' ? 25 : 0
+        marginTop: Platform.OS === 'android' ? 3 : 0
     },
     news: {
         width: Dimensions.get('window').width / 2 - 30
     },
     scrollViewText: {
-        height: Dimensions.get('window').height / 2 - 140,
+        height: Dimensions.get('window').height / 2 - 200,
         marginBottom: 10
     },
     viewMoreButton: {

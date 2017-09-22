@@ -34,7 +34,7 @@ class Navigation extends Component {
                 }
             },
             disaster: {
-                screen: StackNavigator(Stack, {initialRouteName: 'default'}),
+                screen: Stack,
                 headerMode: "float",
                 navigationOptions: {
                     drawerLabel:"Disasters",

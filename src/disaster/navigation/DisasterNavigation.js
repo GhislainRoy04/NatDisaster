@@ -1,17 +1,18 @@
 'use strict';
 import {Platform} from "react-native";
+import {StackNavigator} from "react-navigation";
 import MainDisasterScreen from "../screen/MainDisasterScreen";
 import DisasterScreen from "../screen/DisasterScreen";
 import {LoginScreen} from "../../login";
 
-const DisasterNavigation ={
+const DisasterNavigation =StackNavigator({
     default: {
         screen: MainDisasterScreen,
         headerMode: "float",
         navigationOptions: {
             headerStyle: {
                 marginTop: Platform.OS==="android"?25:0
-            }
+            },header:null
         }
     },
     earthquake: {
@@ -21,7 +22,7 @@ const DisasterNavigation ={
             title: "Earthquake",
             headerStyle: {
                 marginTop: Platform.OS==="android"?25:0
-            }
+            },header:null
         }
     },
     volcano: {
@@ -30,7 +31,7 @@ const DisasterNavigation ={
             title: "Volcano",
             headerStyle: {
                 marginTop: Platform.OS==="android"?25:0
-            }
+            },header:null
         }
     },
     avalanche: {
@@ -39,7 +40,7 @@ const DisasterNavigation ={
             title: "Avalanche",
             headerStyle: {
                 marginTop: Platform.OS==="android"?25:0
-            }
+            },header:null
         }
     },
     coldWave: {
@@ -48,7 +49,7 @@ const DisasterNavigation ={
             title: "Cold Wave",
             headerStyle: {
                 marginTop: Platform.OS==="android"?25:0
-            }
+            },header:null
         }
     },
     cyclone: {
@@ -57,7 +58,7 @@ const DisasterNavigation ={
             title: "Cyclone",
             headerStyle: {
                 marginTop: Platform.OS==="android"?25:0
-            }
+            },header:null
         }
     },
     drought: {
@@ -66,7 +67,7 @@ const DisasterNavigation ={
             title: "Drought",
             headerStyle: {
                 marginTop: Platform.OS==="android"?25:0
-            }
+            },header:null
         }
     },
     epidemic: {
@@ -74,9 +75,8 @@ const DisasterNavigation ={
         navigationOptions: {
             title: "Viral Outbreak",
             headerStyle: {
-
                 marginTop: Platform.OS==="android"?25:0
-            }
+            },header:null
         }
     },
     fire: {
@@ -85,7 +85,7 @@ const DisasterNavigation ={
             title: "Fire / Wild Fire",
             headerStyle: {
                 marginTop: Platform.OS==="android"?25:0
-            }
+            },header:null
         }
     },
     flashFlood: {
@@ -94,7 +94,7 @@ const DisasterNavigation ={
             title: "Flash Flood",
             headerStyle: {
                 marginTop: Platform.OS==="android"?25:0
-            }
+            },header:null
         }
     },
     flood: {
@@ -103,7 +103,7 @@ const DisasterNavigation ={
             title: "Flood",
             headerStyle: {
                 marginTop: Platform.OS==="android"?25:0
-            }
+            },header:null
         }
     },
     heatWave: {
@@ -112,7 +112,7 @@ const DisasterNavigation ={
             title: "Heat Wave",
             headerStyle: {
                 marginTop: 25
-            }
+            },header:null
         }
     },
     landMud: {
@@ -121,7 +121,7 @@ const DisasterNavigation ={
             title: "Land Slide",
             headerStyle: {
                 marginTop: 25
-            }
+            },header:null
         }
     },
     localStorm: {
@@ -130,7 +130,7 @@ const DisasterNavigation ={
             title: "Local Storm",
             headerStyle: {
                 marginTop: 25
-            }
+            },header:null
         }
     },
     stormSurge: {
@@ -139,7 +139,7 @@ const DisasterNavigation ={
             title: "Storm Surge",
             headerStyle: {
                 marginTop: 25
-            }
+            },header:null
         }
     },
     tsunami: {
@@ -148,12 +148,12 @@ const DisasterNavigation ={
             title: "Tsunami",
             headerStyle: {
                 marginTop: 25
-            }
+            },header:null
         }
     },
     login: {
         screen: LoginScreen,
     },
-};
+});
 
 export default (DisasterNavigation);
