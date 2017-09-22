@@ -1,7 +1,8 @@
 'use strict';
 import React, {Component} from "react";
 import {StackNavigator, DrawerNavigator, DrawerItems} from "react-navigation";
-import {ScrollView,AsyncStorage,Dimensions} from "react-native";
+import {ScrollView,AsyncStorage,Dimensions,TouchableOpacity,Platform} from "react-native";
+import {Icon} from "react-native-elements";
 import {DashboardScreen} from "../../dashboard";
 import {LoginScreen} from "../../login";
 import {Settings} from "../../settings";
@@ -20,6 +21,7 @@ class Navigation extends Component {
     }
     render() {
         let {token}= this.state;
+
         const DrawerRoutes = DrawerNavigator({
             dashboard: {
                 screen: DashboardScreen,
@@ -68,8 +70,22 @@ class Navigation extends Component {
                 </ScrollView>
         });
 
+        const StackRoutes = StackNavigator({
+           main:{screen:DrawerRoutes}
+        },{
+            navigationOptions: ({navigation}) => ({
+                headerMode: "float",
+                headerStyle: {
+                    marginTop: Platform.OS==="android"?23:0,
+                },
+                title: "NatDisaster",
+                headerLeft: <TouchableOpacity style={{marginLeft: 10}} onPress={() => navigation.navigate('DrawerOpen')}><Icon
+                    name="menu"/></TouchableOpacity>
+            })
+        });
+
             if(token){
-                return <DrawerRoutes/>
+                return <StackRoutes/>
             }else{
                 return <LoginScreen/>
             }
