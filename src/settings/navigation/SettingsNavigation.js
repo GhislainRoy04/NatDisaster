@@ -7,24 +7,22 @@ import PushNotificationScreen from "../screen/PushNotificationScreen";
 const SettingsNavigation = StackNavigator({
     default: {
         screen: SettingsScreen,
-        headerMode: 'float',
         navigationOptions: {
             headerStyle: {
                 marginTop: Platform.OS === "android" ? 25 : 0
-            },
-            header: null
+            }
         }
     },
     pushnotification: {
         screen: PushNotificationScreen,
-        headerMode: "float",
         navigationOptions: {
             headerStyle: {
                 marginTop: Platform.OS === "android" ? 25 : 0
-            },
-            header: null
+            }
         }
     }
+},{
+    headerMode:'none'
 });
 
 export default (SettingsNavigation);

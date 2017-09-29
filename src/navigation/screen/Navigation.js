@@ -19,6 +19,7 @@ class Navigation extends Component {
            this.setState({token:res});
         });
     }
+
     render() {
         let {token}= this.state;
 
@@ -35,7 +36,7 @@ class Navigation extends Component {
             },
             disaster: {
                 screen: Stack,
-                headerMode: "float",
+                header: false,
                 navigationOptions: {
                     drawerLabel:"Disasters",
                     headerStyle: {
@@ -44,8 +45,8 @@ class Navigation extends Component {
                 }
             },
             settings: {
-                screen: StackNavigator(Settings,{initialRouteName:'default'}),
-                headerMode: "float",
+                screen: Settings,
+                headerMode: "none",
                 navigationOptions: {
                     drawerLabel:"Settings",
                     headerStyle: {
