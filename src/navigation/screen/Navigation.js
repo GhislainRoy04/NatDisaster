@@ -57,6 +57,7 @@ class Navigation extends Component {
         }, {
             lazyLoad: true,
             headerMode: 'screen',
+            drawerWidth:200,
             contentOptions:{
                 style:{
                     marginTop:25,
