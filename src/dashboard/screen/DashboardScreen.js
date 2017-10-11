@@ -83,8 +83,8 @@ class DashboardScreen extends Component {
     }
 
     titleFixer(title){
-        if(title.length>100){
-            return title.substring(0,100) + '...';
+        if(title.length>80){
+            return title.substring(0,80) + '...';
         }
         return title
     }

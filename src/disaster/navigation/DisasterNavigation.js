@@ -1,13 +1,13 @@
 'use strict';
 import {Platform} from "react-native";
+import {StackNavigator} from "react-navigation";
 import MainDisasterScreen from "../screen/MainDisasterScreen";
 import DisasterScreen from "../screen/DisasterScreen";
 import {LoginScreen} from "../../login";
 
-const DisasterNavigation ={
+const DisasterNavigation =StackNavigator({
     default: {
         screen: MainDisasterScreen,
-        headerMode: "float",
         navigationOptions: {
             headerStyle: {
                 marginTop: Platform.OS==="android"?25:0
@@ -16,7 +16,6 @@ const DisasterNavigation ={
     },
     earthquake: {
         screen: DisasterScreen,
-        headerMode: "float",
         navigationOptions: {
             title: "Earthquake",
             headerStyle: {
@@ -34,7 +33,7 @@ const DisasterNavigation ={
         }
     },
     avalanche: {
-        screen: DisasterScreen, headerMode: "float",
+        screen: DisasterScreen,
         navigationOptions: {
             title: "Avalanche",
             headerStyle: {
@@ -43,7 +42,7 @@ const DisasterNavigation ={
         }
     },
     coldWave: {
-        screen: DisasterScreen, headerMode: "float",
+        screen: DisasterScreen,
         navigationOptions: {
             title: "Cold Wave",
             headerStyle: {
@@ -52,7 +51,7 @@ const DisasterNavigation ={
         }
     },
     cyclone: {
-        screen: DisasterScreen, headerMode: "float",
+        screen: DisasterScreen,
         navigationOptions: {
             title: "Cyclone",
             headerStyle: {
@@ -61,7 +60,7 @@ const DisasterNavigation ={
         }
     },
     drought: {
-        screen: DisasterScreen, headerMode: "float",
+        screen: DisasterScreen,
         navigationOptions: {
             title: "Drought",
             headerStyle: {
@@ -70,17 +69,16 @@ const DisasterNavigation ={
         }
     },
     epidemic: {
-        screen: DisasterScreen, headerMode: "float",
+        screen: DisasterScreen,
         navigationOptions: {
             title: "Viral Outbreak",
             headerStyle: {
-
                 marginTop: Platform.OS==="android"?25:0
             }
         }
     },
     fire: {
-        screen: DisasterScreen, headerMode: "float",
+        screen: DisasterScreen,
         navigationOptions: {
             title: "Fire / Wild Fire",
             headerStyle: {
@@ -89,7 +87,7 @@ const DisasterNavigation ={
         }
     },
     flashFlood: {
-        screen: DisasterScreen, headerMode: "float",
+        screen: DisasterScreen,
         navigationOptions: {
             title: "Flash Flood",
             headerStyle: {
@@ -98,7 +96,7 @@ const DisasterNavigation ={
         }
     },
     flood: {
-        screen: DisasterScreen, headerMode: "float",
+        screen: DisasterScreen,
         navigationOptions: {
             title: "Flood",
             headerStyle: {
@@ -107,7 +105,7 @@ const DisasterNavigation ={
         }
     },
     heatWave: {
-        screen: DisasterScreen, headerMode: "float",
+        screen: DisasterScreen,
         navigationOptions: {
             title: "Heat Wave",
             headerStyle: {
@@ -116,7 +114,7 @@ const DisasterNavigation ={
         }
     },
     landMud: {
-        screen: DisasterScreen, headerMode: "float",
+        screen: DisasterScreen,
         navigationOptions: {
             title: "Land Slide",
             headerStyle: {
@@ -125,7 +123,7 @@ const DisasterNavigation ={
         }
     },
     localStorm: {
-        screen: DisasterScreen, headerMode: "float",
+        screen: DisasterScreen,
         navigationOptions: {
             title: "Local Storm",
             headerStyle: {
@@ -134,7 +132,7 @@ const DisasterNavigation ={
         }
     },
     stormSurge: {
-        screen: DisasterScreen, headerMode: "float",
+        screen: DisasterScreen,
         navigationOptions: {
             title: "Storm Surge",
             headerStyle: {
@@ -143,7 +141,7 @@ const DisasterNavigation ={
         }
     },
     tsunami: {
-        screen: DisasterScreen, headerMode: "float",
+        screen: DisasterScreen,
         navigationOptions: {
             title: "Tsunami",
             headerStyle: {
@@ -154,6 +152,8 @@ const DisasterNavigation ={
     login: {
         screen: LoginScreen,
     },
-};
+},{
+    headerMode:'none'
+});
 
 export default (DisasterNavigation);
