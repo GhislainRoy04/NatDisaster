@@ -21,7 +21,9 @@ export default StyleSheet.create({
     },
     firstNews: {
         width: Dimensions.get('window').width - 30,
-        height: Dimensions.get('window').height / 2-50
+        height: Dimensions.get('window').height / 2-50,
+        borderColor:"#040236",
+        borderWidth:2,
     },
     newsRow: {
         width: Dimensions.get('window').width - 30,
@@ -35,7 +37,9 @@ export default StyleSheet.create({
         marginTop: Platform.OS === 'android' ? 3 : 0
     },
     news: {
-        width: Dimensions.get('window').width / 2 - 30
+        width: Dimensions.get('window').width / 2 - 30,
+        borderColor:"#040236",
+        borderWidth:2
     },
     scrollViewText: {
         height: Dimensions.get('window').height / 2 - 200,
@@ -45,5 +49,16 @@ export default StyleSheet.create({
         marginBottom: 0,
         backgroundColor: AppStyles.defaultButton.backgroundColor,
         borderRadius: AppStyles.defaultButton.borderRadius,
+        borderWidth:2,
+        borderColor:"#040236",
+    },
+    titleStyle:{
+        color:"#282828",
+    },
+    dividerStyle:{
+        backgroundColor:"black",
+        height:2,
+        width: Dimensions.get('window').width - 30
     }
+
 });
