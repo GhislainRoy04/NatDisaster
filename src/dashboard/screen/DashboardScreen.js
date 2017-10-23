@@ -38,7 +38,7 @@ class DashboardScreen extends Component {
         return (
             <View style={styles.headLineView}>
                 <Card title={headLine.length > 0 ? this.titleFixer(headLine[0].fields.title) : "Latest"}
-                      containerStyle={styles.firstNews}>
+                      containerStyle={styles.firstNews} titleStyle={styles.titleStyle} dividerStyle={styles.dividerStyle}>
                     <ScrollView style={styles.scrollViewText}>
                         <Text style={styles.reportTitle}>{headLine.length > 0 && headLine[0].fields.body}</Text>
                     </ScrollView>
