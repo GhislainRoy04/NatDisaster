@@ -6,6 +6,7 @@ import Spinner from "react-native-loading-spinner-overlay";
 import {Api} from "../../api";
 import styles from "./DisasterCommonStyleSheet";
 import AppStyles from "../../common/styling";
+import _ from "lodash";
 
 class EarthquakeScreen extends Component {
 
@@ -87,7 +88,7 @@ class EarthquakeScreen extends Component {
     onSummaryPress() {
         this.setState({visible: true});
         Api.getDisasterByType(this.state.type).then((res) => {
-            this.setState({summary: res.data.data, visible: false});
+            this.setState({summary: _.sortBy(res.data.data,'fields.status'), visible: false});
         });
     }
 

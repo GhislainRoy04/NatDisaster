@@ -61,13 +61,13 @@ class Navigation extends Component {
             contentOptions:{
                 style:{
                     marginTop:25,
-                    backgroundColor:'#c0c0c0',
+                    backgroundColor:'#00a8de',
                 },
-                activeBackgroundColor:"#848484",
+                activeBackgroundColor:"#007ea6",
                 activeTintColor:"#fff"
             },
             contentComponent: props =>
-                <ScrollView contentContainerStyle={{backgroundColor:"#c0c0c0",height:Dimensions.get('window').height}}>
+                <ScrollView contentContainerStyle={{backgroundColor:"#00a8de",height:Dimensions.get('window').height-78}}>
                     <DrawerItems {...props} />
                 </ScrollView>
         });
@@ -79,10 +79,12 @@ class Navigation extends Component {
                 headerMode: "float",
                 headerStyle: {
                     marginTop: Platform.OS==="android"?23:0,
+                    backgroundColor:"#000050"
                 },
+                headerTintColor:"#f7f7f7",
                 title: "NatDisaster",
                 headerLeft: <TouchableOpacity style={{marginLeft: 10}} onPress={() => navigation.navigate('DrawerOpen')}><Icon
-                    name="menu"/></TouchableOpacity>
+                    name="menu" color="#fff"/></TouchableOpacity>
             })
         });
 
