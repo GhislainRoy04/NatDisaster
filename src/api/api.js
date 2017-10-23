@@ -8,6 +8,9 @@ const reportURL = "https://api.reliefweb.int/v1/reports?appname=natdisaster&limi
 const disasterURL = "https://api.reliefweb.int/v1/disasters?appname=natdisaster&limit=50&preset=latest&profile=full";
 const latestURL = "https://api.reliefweb.int/v1/reports?appname=natdisaster&limit=5&preset=latest&profile=full";
 
+const EQ_PAST_MONTH = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson";
+const EQ_ALL_PAST_HOUR = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson";
+
 export  default ({
     getDisasterByType: function (type) {
         let encodedType = encodeURIComponent(type);
@@ -62,5 +65,12 @@ export  default ({
             return token;
         }
 
+    },
+    getEarthQuakeMonthtly:async function(){
+        return axios.get(EQ_PAST_MONTH).then(function(response){
+            return response;
+        }).catch(function(error){
+            Alert.alert("Error",`Error occured during the get. ${error}`);
+        })
     }
 });
